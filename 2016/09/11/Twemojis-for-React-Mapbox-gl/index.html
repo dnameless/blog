@@ -1,0 +1,698 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="CS3216," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="Leon Blogs" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="Emoji ProblemSo my group decided on doing an app using emoji’s and mapbox, it’s Pokemon Go for chat where you (or businesses) could drop and discover messages (mockup screenshots below) around you. We">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Twemojis for React & Mapbox gl">
+<meta property="og:url" content="http://leonmak.me/2016/09/11/Twemojis-for-React-Mapbox-gl/index.html">
+<meta property="og:site_name" content="Leon Blogs">
+<meta property="og:description" content="Emoji ProblemSo my group decided on doing an app using emoji’s and mapbox, it’s Pokemon Go for chat where you (or businesses) could drop and discover messages (mockup screenshots below) around you. We">
+<meta property="og:image" content="http://res.cloudinary.com/leonmak/image/upload/v1473578344/drop/List.png">
+<meta property="og:image" content="http://res.cloudinary.com/leonmak/image/upload/c_scale,w_421/v1473578345/drop/Map.jpg">
+<meta property="og:image" content="http://res.cloudinary.com/leonmak/image/upload/v1473578343/drop/Drop_group.png">
+<meta property="og:image" content="http://res.cloudinary.com/leonmak/image/upload/v1473662951/drop/Screenshot_2016-09-12_14.47.11.png">
+<meta property="og:image" content="http://res.cloudinary.com/leonmak/image/upload/v1473662951/drop/Screenshot_2016-09-12_14.48.29.png">
+<meta property="og:image" content="http://res.cloudinary.com/leonmak/image/upload/v1473662952/drop/Screenshot_2016-09-12_14.46.05.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Twemojis for React & Mapbox gl">
+<meta name="twitter:description" content="Emoji ProblemSo my group decided on doing an app using emoji’s and mapbox, it’s Pokemon Go for chat where you (or businesses) could drop and discover messages (mockup screenshots below) around you. We">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post',
+    motion: true
+  };
+</script>
+
+  <title> Twemojis for React & Mapbox gl | Leon Blogs </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Leon Blogs</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-projects">
+          <a href="/projects" rel="section">
+            
+              <i class="menu-item-icon fa fa-gift fa-fw"></i> <br />
+            
+            projects
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-design">
+          <a href="/design" rel="section">
+            
+              <i class="menu-item-icon fa fa-paint-brush fa-fw"></i> <br />
+            
+            design
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Twemojis for React & Mapbox gl
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            Posted on
+            <time itemprop="dateCreated" datetime="2016-09-11T14:39:25+08:00" content="2016-09-11">
+              2016-09-11
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/09/11/Twemojis-for-React-Mapbox-gl/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/09/11/Twemojis-for-React-Mapbox-gl/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h1 id="Emoji-Problem"><a href="#Emoji-Problem" class="headerlink" title="Emoji Problem"></a>Emoji Problem</h1><p>So my group decided on doing an app using emoji’s and mapbox, it’s Pokemon Go for chat where you (or businesses) could drop and discover messages (mockup screenshots below) around you. Well apparently you need to <a href="https://www.mapbox.com/help/custom-markers/" target="_blank" rel="external">upload images to Mapbox Studio for custom marker icons in MapboxGL</a>, the only other custom image (using css) was the user’s avartar which updated on map move rather than as a marker property. We thought we could upload all 1200+ emoji / 874 twemoji svg files and be done (they were only 1mb, why not?), but strangely there was an (AFAIK) undocumented 500 sprite limit. </p>
+<h1 id="Lesser-is-better"><a href="#Lesser-is-better" class="headerlink" title="Lesser is better"></a>Lesser is better</h1><p>Anyway emojis like flags and letters would not be too relevant for our purposes, so we just had to choose which emojis we would support. Based on <a href="http://emojitracker.com/" target="_blank" rel="external">http://emojitracker.com/</a> we thought that using the people + objects categories (425 twemojis) would cover well enough ground for people to post their reactions and activities.</p>
+<h1 id="How-to-get-the-files"><a href="#How-to-get-the-files" class="headerlink" title="How to get the files"></a>How to get the files</h1><p>The next step was to upload the svgs. To choose a subset of <a href="https://github.com/twitter/twemoji" target="_blank" rel="external">twemojis</a> to upload to Mapbox Studio and to use with <a href="https://github.com/chadoh/react-emoji-picker" target="_blank" rel="external">react-emoji-picker</a> in our app, I had to first get the list of twemojis we would support on the emoji picker. There was a category to name mapping, then there was a name to unicode mapping, put the two together and a script and tada I got the files, here’s <a href="https://github.com/leonmak/twemoji-filter" target="_blank" rel="external">the repo</a>.</p>
+<h1 id="Mockups-of-our-app"><a href="#Mockups-of-our-app" class="headerlink" title="Mockups of our app"></a>Mockups of our app</h1><div class="group-picture"><div class="group-picture-container"><div class="group-picture-row"><div class="group-picture-column" style="width: 33.333333333333336%;"><a href="http://res.cloudinary.com/leonmak/image/upload/v1473578344/drop/List.png" class="fancybox" rel="external" target="_blank"><img src="http://res.cloudinary.com/leonmak/image/upload/v1473578344/drop/List.png" alt=""></a></div><div class="group-picture-column" style="width: 33.333333333333336%;"><a href="http://res.cloudinary.com/leonmak/image/upload/c_scale,w_421/v1473578345/drop/Map.jpg" class="fancybox" rel="external" target="_blank"><img src="http://res.cloudinary.com/leonmak/image/upload/c_scale,w_421/v1473578345/drop/Map.jpg" alt=""></a></div><div class="group-picture-column" style="width: 33.333333333333336%;"><a href="http://res.cloudinary.com/leonmak/image/upload/v1473578343/drop/Drop_group.png" class="fancybox" rel="external" target="_blank"><img src="http://res.cloudinary.com/leonmak/image/upload/v1473578343/drop/Drop_group.png" alt=""></a></div></div><div class="group-picture-row"></div></div></div>
+<h2 id="What-it-looks-like-now"><a href="#What-it-looks-like-now" class="headerlink" title="What it looks like now"></a>What it looks like now</h2><div class="group-picture"><div class="group-picture-container"><div class="group-picture-row"><div class="group-picture-column" style="width: 33.333333333333336%;"><a href="http://res.cloudinary.com/leonmak/image/upload/v1473662951/drop/Screenshot_2016-09-12_14.47.11.png" class="fancybox" rel="external" target="_blank"><img src="http://res.cloudinary.com/leonmak/image/upload/v1473662951/drop/Screenshot_2016-09-12_14.47.11.png" alt=""></a></div><div class="group-picture-column" style="width: 33.333333333333336%;"><a href="http://res.cloudinary.com/leonmak/image/upload/v1473662951/drop/Screenshot_2016-09-12_14.48.29.png" class="fancybox" rel="external" target="_blank"><img src="http://res.cloudinary.com/leonmak/image/upload/v1473662951/drop/Screenshot_2016-09-12_14.48.29.png" alt=""></a></div><div class="group-picture-column" style="width: 33.333333333333336%;"><a href="http://res.cloudinary.com/leonmak/image/upload/v1473662952/drop/Screenshot_2016-09-12_14.46.05.png" class="fancybox" rel="external" target="_blank"><img src="http://res.cloudinary.com/leonmak/image/upload/v1473662952/drop/Screenshot_2016-09-12_14.46.05.png" alt=""></a></div></div><div class="group-picture-row"></div></div></div>
+<h3 id="Edit-Check-it-out-https-drop-dev-surge-sh"><a href="#Edit-Check-it-out-https-drop-dev-surge-sh" class="headerlink" title="Edit: Check it out - https://drop-dev.surge.sh/"></a>Edit: Check it out - <a href="https://drop-dev.surge.sh/" target="_blank" rel="external">https://drop-dev.surge.sh/</a></h3></span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CS3216/" rel="tag">#CS3216</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/30/Application-Critique-Discord/" rel="next" title="Application critque - Discord">
+                <i class="fa fa-chevron-left"></i> Application critque - Discord
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/18/Quick-offline-pwa-wins/" rel="prev" title="Quick offline PWA wins">
+                Quick offline PWA wins <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table Of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpeg" alt="Leon Mak" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Leon Mak</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">categories</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">33</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/leonmak" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Emoji-Problem"><span class="nav-number">1.</span> <span class="nav-text">Emoji Problem</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lesser-is-better"><span class="nav-number">2.</span> <span class="nav-text">Lesser is better</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#How-to-get-the-files"><span class="nav-number">3.</span> <span class="nav-text">How to get the files</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mockups-of-our-app"><span class="nav-number">4.</span> <span class="nav-text">Mockups of our app</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-it-looks-like-now"><span class="nav-number">4.1.</span> <span class="nav-text">What it looks like now</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Edit-Check-it-out-https-drop-dev-surge-sh"><span class="nav-number">4.1.1.</span> <span class="nav-text">Edit: Check it out - https://drop-dev.surge.sh/</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leon Mak</span>
+</div>
+<!--
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+-->
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'leonmak-me';
+      var disqus_identifier = '2016/09/11/Twemojis-for-React-Mapbox-gl/';
+      var disqus_title = 'Twemojis for React & Mapbox gl';
+      var disqus_url = 'http://leonmak.me/2016/09/11/Twemojis-for-React-Mapbox-gl/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>
