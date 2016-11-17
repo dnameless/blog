@@ -12,31 +12,6 @@
     <generator>http://hexo.io/</generator>
     
     <item>
-      <title>Hello World</title>
-      <link>http://leonmak.me/2016/11/17/hello-world/</link>
-      <guid>http://leonmak.me/2016/11/17/hello-world/</guid>
-      <pubDate>Thu, 17 Nov 2016 12:01:06 GMT</pubDate>
-      <description>
-      
-        &lt;p&gt;Welcome to &lt;a href=&quot;http://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;http://hexo.io
-      
-      </description>
-      
-      <content:encoded><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h1 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h1><h2 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h2 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h2 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h2 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content:encoded>
-      
-      <comments>http://leonmak.me/2016/11/17/hello-world/#disqus_thread</comments>
-    </item>
-    
-    <item>
       <title>What do users want?</title>
       <link>http://leonmak.me/2016/11/17/What-do-users-want/</link>
       <guid>http://leonmak.me/2016/11/17/What-do-users-want/</guid>
@@ -582,6 +557,34 @@
 ]]></content:encoded>
       
       <comments>http://leonmak.me/2016/06/06/Authentication-with-JWT/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>A tweet feed for loklak.org </title>
+      <link>http://leonmak.me/2016/05/22/A-tweet-feed-for-loklak-org/</link>
+      <guid>http://leonmak.me/2016/05/22/A-tweet-feed-for-loklak-org/</guid>
+      <pubDate>Sun, 22 May 2016 01:20:21 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;Loklak.org has a page for &lt;a href=&quot;http://loklak.org/apps/applist/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;front-end apps&lt;/a&gt; that show
+      
+      </description>
+      
+      <content:encoded><![CDATA[<p>Loklak.org has a page for <a href="http://loklak.org/apps/applist/index.html" target="_blank" rel="external">front-end apps</a> that showcase the uses of loklak’s API, and in the first week I’ve tried to warm up for GSOC by making a ‘realtime’ twitter feed, as the existing front-end apps were mainly single http get requests and didn’t seem very appealing to me, and also to prepare for my <a href="http://leonmak.me/2016/05/21/Google-Summer-of-Code-Loklak/" target="_blank" rel="external">front-end app data visualisations GSOC project</a>.</p>
+<p>To obtain updated data, the app polls the loklak API on a regular interval. This is done rather simply by using $interval in AngularJS, which is just a wrapper around window.setInterval(). For the realtime feed, I set the minimum rate for querying at an arbitrary 1min so as not to exceed the limits.</p>
+<p>The next thing I needed to solve was where to store the data, as I didn’t have a database to work with, local storage was the only option. A useful module for this is “<a href="https://github.com/gsklee/ngStorage" target="_blank" rel="external">ngStorage</a>“. At a maximum of 5MB it isn’t much, but decent enough to store a few thousand tweets and showcase the features of loklak. If developers wanted to create an external app for loklak, they could also use the front-end apps if they were well modularized.</p>
+<p>Lastly, to display in a fancy pinterest-like grid, I’ve decided to use an angular module called “<a href="https://github.com/s-yadav/angulargrid" target="_blank" rel="external">angulargrid</a>“. To achieve the infinite scroll effect, I created another scope variable, to take a subset of the data in local storage. AngularJS then helps with rendering changes in the data model to the feed, by using $watch() on local storage.</p>
+<p>Do checkout the <a href="http://loklak.org/apps/tweetfeed/" target="_blank" rel="external">tweetfeed</a>:</p>
+<p><img class="alignnone size-full wp-image-137" src="http://blog.loklak.net/wp-content/uploads/2016/05/tweetfeed.gif" alt="tweetfeed" width="1437" height="804"></p>
+<p>Some areas to improve:</p>
+<ul>
+    <li>Refactor services to make it more modular</li>
+    <li>Improve the regex to account for emojis and other tags</li>
+</ul>
+
+]]></content:encoded>
+      
+      <comments>http://leonmak.me/2016/05/22/A-tweet-feed-for-loklak-org/#disqus_thread</comments>
     </item>
     
   </channel>

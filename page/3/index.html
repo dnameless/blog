@@ -227,8 +227,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/05/22/A-tweet-feed-for-loklak-org/" itemprop="url">
-                  A tweet feed for loklak.org 
+                <a class="post-title-link" href="/2016/05/21/Google-Summer-of-Code-Loklak/" itemprop="url">
+                  Google Summer of Code: Loklak
                 </a>
               
             
@@ -238,8 +238,8 @@
         <div class="post-meta">
           <span class="post-time">
             Posted on
-            <time itemprop="dateCreated" datetime="2016-05-22T09:20:21+08:00" content="2016-05-22">
-              2016-05-22
+            <time itemprop="dateCreated" datetime="2016-05-21T08:49:17+08:00" content="2016-05-21">
+              2016-05-21
             </time>
           </span>
 
@@ -249,8 +249,102 @@
             
               <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2016/05/22/A-tweet-feed-for-loklak-org/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/22/A-tweet-feed-for-loklak-org/" itemprop="commentsCount"></span>
+              <a href="/2016/05/21/Google-Summer-of-Code-Loklak/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/21/Google-Summer-of-Code-Loklak/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>Currently, <a href="http://loklak.net">Loklak.net</a> has it’s own search and social wall capabilities. </p>
+<!-- ![alt text](https://loklaknet.files.wordpress.com/2015/08/screenshot-4.png "linear layout") -->
+<p><img src="https://loklaknet.files.wordpress.com/2015/08/screenshot-7.png" alt="alt text" title="card layout"><br><img src="https://loklaknet.files.wordpress.com/2015/08/screenshot-8.png" alt="alt text" title="leaderboards"></p>
+<p><a href="http://loklak.org/apps/">Loklak.org</a> also has a few front-end apps:<br><img src="http://s32.postimg.org/b435dxmo5/Screenshot_2016_05_21_10_31_57.png" alt="" title="loklak front-end apps"><br>However, they are currently not as feature filled as <a href="http://loklak.net">Loklak.net</a>, so the project aims to add additional visualisations and display options, including a live-streaming tweet wall, and timeline for loklak.org</p>
+<h1 id="The-project"><a href="#The-project" class="headerlink" title="The project"></a>The project</h1><p>A front-end app that uses loklak.org for API calls to obtain tweets in json format. Users can deploy their own loklak server or locally or online (checkout the <a href="http://github.com/loklak/loklak_server">loklak_server github repo</a> for one-click deploy buttons!)<br><a href="https://heroku.com/deploy"><img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy"></a><br><a href="https://my.scalingo.com/deploy?source=https://github.com/loklak/loklak_server"><img src="https://cdn.scalingo.com/deploy/button.svg" alt="Deploy on Scalingo"></a><br><a href="https://bluemix.net/deploy?repository=https://github.com/loklak/loklak_server"><img src="https://bluemix.net/deploy/button.png" alt="Deploy to Bluemix"></a></p>
+<p>I have previously developed a prototype with meteor.js <a href="https://github.com/leonmak/meteor-twitterwall">(github repo)</a> which you can deploy locally or online too!<br><img src="https://raw.githubusercontent.com/leonmak/meteor-twitterwall/master/public/ss.gif" alt=""></p>
+<p>But upon discussion with the loklak team we concluded it was hard to integrate with loklak.org like the current front-end apps, so I decided to make the front-end app with a front-end framework like Angular or React.</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/05/21/Google-Summer-of-Code-Loklak/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/21/updates/" itemprop="url">
+                  updates
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            Posted on
+            <time itemprop="dateCreated" datetime="2016-05-21T08:38:28+08:00" content="2016-05-21">
+              2016-05-21
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/05/21/updates/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/21/updates/" itemprop="commentsCount"></span>
               </a>
             </span>
             
@@ -272,18 +366,138 @@
         
           <span itemprop="articleBody">
             
-              <p>Loklak.org has a page for <a href="http://loklak.org/apps/applist/index.html" target="_blank" rel="external">front-end apps</a> that showcase the uses of loklak’s API, and in the first week I’ve tried to warm up for GSOC by making a ‘realtime’ twitter feed, as the existing front-end apps were mainly single http get requests and didn’t seem very appealing to me, and also to prepare for my <a href="http://leonmak.me/2016/05/21/Google-Summer-of-Code-Loklak/" target="_blank" rel="external">front-end app data visualisations GSOC project</a>.</p>
-<p>To obtain updated data, the app polls the loklak API on a regular interval. This is done rather simply by using $interval in AngularJS, which is just a wrapper around window.setInterval(). For the realtime feed, I set the minimum rate for querying at an arbitrary 1min so as not to exceed the limits.</p>
-<p>The next thing I needed to solve was where to store the data, as I didn’t have a database to work with, local storage was the only option. A useful module for this is “<a href="https://github.com/gsklee/ngStorage" target="_blank" rel="external">ngStorage</a>“. At a maximum of 5MB it isn’t much, but decent enough to store a few thousand tweets and showcase the features of loklak. If developers wanted to create an external app for loklak, they could also use the front-end apps if they were well modularized.</p>
-<p>Lastly, to display in a fancy pinterest-like grid, I’ve decided to use an angular module called “<a href="https://github.com/s-yadav/angulargrid" target="_blank" rel="external">angulargrid</a>“. To achieve the infinite scroll effect, I created another scope variable, to take a subset of the data in local storage. AngularJS then helps with rendering changes in the data model to the feed, by using $watch() on local storage.</p>
-<p>Do checkout the <a href="http://loklak.org/apps/tweetfeed/" target="_blank" rel="external">tweetfeed</a>:</p>
-<p><img class="alignnone size-full wp-image-137" src="http://blog.loklak.net/wp-content/uploads/2016/05/tweetfeed.gif" alt="tweetfeed" width="1437" height="804"></p>
-<p>Some areas to improve:</p>
-<ul>
-    <li>Refactor services to make it more modular</li>
-    <li>Improve the regex to account for emojis and other tags</li>
+              <h1 id="Profile-pic"><a href="#Profile-pic" class="headerlink" title="Profile pic"></a>Profile pic</h1><p>Some additions to the next theme<br>In <code>_config.yml</code>, add <code>avatar: /images/default_avatar.jpeg</code></p>
+<h1 id="Tags-page"><a href="#Tags-page" class="headerlink" title="Tags page"></a>Tags page</h1><ul>
+<li><p>Create a page named <code>tags</code></p>
+<pre><code>hexo new page &quot;tags&quot;
+
+</code></pre></li>
+<li><p>Edit tags page, set page type to <code>tags</code>.</p>
+<pre><code>title: All tags
+date: 2014-12-22 12:39:04
+type: &quot;tags&quot;
+
+</code></pre></li>
+<li><p>Add <code>tags</code> to theme <code>_config.yml</code>:</p>
+<pre><code>menu:
+  home: /
+  archives: /archives
+  tags: /tags
+
+</code></pre></li>
 </ul>
 
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/12/22/starting-a-free-blog/" itemprop="url">
+                  Meta! How to create this blog (for free ;)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            Posted on
+            <time itemprop="dateCreated" datetime="2015-12-22T00:26:06+08:00" content="2015-12-22">
+              2015-12-22
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/12/22/starting-a-free-blog/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/12/22/starting-a-free-blog/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <h1 id="Why-Hexo"><a href="#Why-Hexo" class="headerlink" title="Why Hexo?"></a>Why Hexo?</h1><p>It’s a static site generator. It’s fast, free, and simple. AND you post in markdown, which is just neat.</p>
+<h1 id="Creating-your-hexo-blog-101"><a href="#Creating-your-hexo-blog-101" class="headerlink" title="Creating your hexo blog 101"></a>Creating your hexo blog 101</h1><p>It’s fun &amp; free (except for domain name, if you’re not a uni student).<br>First let’s setup hexo. Install npm if you haven’t.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">hexo init</span><br><span class="line">npm i <span class="comment"># npm install</span></span><br><span class="line">hexo s <span class="comment"># hexo server</span></span><br><span class="line"></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/iissnan/hexo-theme-next themes/next</span><br><span class="line"><span class="built_in">cd</span> themes/next/</span><br></pre></td></tr></table></figure>
+<p>Now go to <code>localhost:4000</code>,  your blog should be using the default hexo theme.<br>We downloaded the NexT theme but have not ‘installed it’, so:</p>
+<h2 id="open-config-yml-to-change-theme"><a href="#open-config-yml-to-change-theme" class="headerlink" title="open config.yml to change theme"></a>open config.yml to change theme</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;!-- replace default &#34;landscape&#34; w/ &#34;next&#34; --&#62;&#10;themes: next</span><br></pre></td></tr></table></figure>
+<p>Now your blog should be in the next theme. <code>hexo s</code> to check</p>
+<p><br></p>
+<h2 id="Create-a-new-post-page"><a href="#Create-a-new-post-page" class="headerlink" title="Create a new post/ page:"></a>Create a new post/ page:</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo new post <span class="string">'blog post title'</span> <span class="comment">#or hexo 'post title'</span></span><br><span class="line">hexo new page <span class="string">'page title'</span></span><br><span class="line">hexo g <span class="comment"># generate files to /public</span></span><br><span class="line">hexo s <span class="comment"># start server if not already started in another terminal window</span></span><br></pre></td></tr></table></figure>
+<p>Edit it under <code>source/_posts</code>, check <a href="https://hexo.io/docs/" target="_blank" rel="external">hexo’s docs</a> for more options</p>
+<p><br></p>
+<h1 id="Setting-up-domain-and-hosting"><a href="#Setting-up-domain-and-hosting" class="headerlink" title="Setting up domain and hosting"></a>Setting up domain and hosting</h1><p>You must already have bought a domain, meaning the website name ‘leonmak.me’, in my case. If you have a .edu email, I recommend <a href="https://education.github.com/pack/" target="_blank" rel="external">github education pack</a>.</p>
+<h2 id="Github-io-pages"><a href="#Github-io-pages" class="headerlink" title="Github.io pages"></a>Github.io pages</h2><p>Go to github.com &amp; create organisation and within it a repo with same name (for eg using ‘leonblogs’ as the org name and repo name I will get “leonblogs/leonblogs.github.io”)<br>add the remote then push to the repo, in repo settings you can see link to leonblogs.github.io</p>
+<h2 id="Add-custom-domain"><a href="#Add-custom-domain" class="headerlink" title="Add custom domain"></a>Add custom domain</h2><p>Create a new file in the root folder named ‘CNAME’ with just <code>leonmak.me</code> in it. in Domain provider (eg:Namecheap.com)   Add A records: 192.30.252.153, 192.30.252.154   and CNAME: leonmak.me.</p>
+<p>Now in settings it should link to leonmak.me</p>
+<h1 id="Updating-with-“hexo-deploy”-plugin"><a href="#Updating-with-“hexo-deploy”-plugin" class="headerlink" title="Updating with “hexo-deploy” plugin"></a>Updating with “hexo-deploy” plugin</h1><p>run <code>npm install hexo-deployer-git --save</code> in _config.yml:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># Deployment&#10;## Docs: http://hexo.io/docs/deployment.html&#10;deploy:&#10;  type: git&#10;  repo: https://github.com/leonblogs/leonblogs.github.io</span><br></pre></td></tr></table></figure>
+<h2 id="Add-CNAME-plugin-for-custom-domain"><a href="#Add-CNAME-plugin-for-custom-domain" class="headerlink" title="Add CNAME plugin for custom domain"></a>Add CNAME plugin for custom domain</h2><p><code>npm install hexo-generator-cname --save</code></p>
+<p>Add hexo-generator-cname to plugins in _config.yml, and set url</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url: http://leonmak.me&#10;&#60;!-- ... other options --&#62;&#10;plugins:&#10;- hexo-generator-cname</span><br></pre></td></tr></table></figure>
+<p>After editing <code>_posts/abc.md</code> files, do a <code>hexo generate</code>, to build the files, then <code>hexo deploy</code>.<br>Done!</p>
+<h3 id="Other-plugins"><a href="#Other-plugins" class="headerlink" title="Other plugins:"></a>Other plugins:</h3><ul>
+<li><a href="https://github.com/sergiolepore/hexo-tag-emojis" target="_blank" rel="external">hexo emojis</a></li>
+<li>Need to install <a href="https://github.com/hexojs/hexo-util" target="_blank" rel="external">hexo-util</a></li>
+<li>Follow the instructions on the page, it’s similar to hexo-deploy</li>
+</ul>
 
             
           </span>
@@ -351,7 +565,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">23</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
