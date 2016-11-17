@@ -227,6 +227,208 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/06/Authentication-with-JWT/" itemprop="url">
+                  Authentication with JWT
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            Posted on
+            <time itemprop="dateCreated" datetime="2016-06-06T09:28:23+08:00" content="2016-06-06">
+              2016-06-06
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/06/06/Authentication-with-JWT/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/06/Authentication-with-JWT/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>In the loklak webclient, the plan is to store the accounts locally on mongodb, instead of using loklak server to store accounts. Here’s how I used <a href="http://jwt.io" target="_blank" rel="external">JWTs</a> (JSON Web Tokens) for basic user authentication.</p>
+<p>Token based authentication is often compared to the traditional method of saving a session id in a cookie, and checking the user information in the session object for every request. Instead of saving user information on the server and checking it every request, a token, which allows access to the server, is given in exchange for valid credentials and is sent in every request. There are various advantages to this, including <a href="https://jwt.io/introduction/" target="_blank" rel="external">security and scaling</a>.</p>
+<p>As you can see from the mongoose user schema the hash and salt are stored instead of a password.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> UserSchema = <span class="keyword">new</span> Schema(&#123;</span><br><span class="line"> email: &#123;</span><br><span class="line">	 type: <span class="built_in">String</span>,</span><br><span class="line">	 unique: <span class="literal">true</span>,</span><br><span class="line">	 required: <span class="literal">true</span></span><br><span class="line"> &#125;,</span><br><span class="line"> name: &#123;</span><br><span class="line">	 type: <span class="built_in">String</span>,</span><br><span class="line">	 required: <span class="literal">true</span></span><br><span class="line"> &#125;,</span><br><span class="line"> hash: <span class="built_in">String</span>,</span><br><span class="line"> salt: <span class="built_in">String</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><a href="http://passportjs.org/" target="_blank" rel="external">PassportJS</a> is a popular middleware for handling authentication in Node.js, and since the web client already uses Express, this was a natural choice. Various authentication ‘strategies’ will also be used to connect other social login providers, like twitter, or weibo.</p>
+<p>For now, since we are using email to store the username and hashed password, we will choose the <a href="https://www.npmjs.com/package/passport-local" target="_blank" rel="external">passport-local</a> package. The configuration is easy can be found on their <a href="http://passportjs.org/docs/configure" target="_blank" rel="external">website</a>, and is almost the same, except that we use email as username, rather than just any string.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">passport.use(<span class="keyword">new</span> LocalStrategy(&#123;</span><br><span class="line"> usernameField: <span class="string">'email'</span></span><br><span class="line"> &#125;,</span><br><span class="line"> <span class="function"><span class="keyword">function</span>(<span class="params">username, password, done</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ... same as example config in passportjs.org</span></span><br><span class="line"> &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>Express.js then handles the register routes:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">router.post(<span class="string">'/register'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line"> passport.authenticate(<span class="string">'local'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, user, info</span>)</span>&#123;</span><br><span class="line"> <span class="keyword">var</span> token;</span><br><span class="line"> <span class="comment">// If Passport throws/catches an error</span></span><br><span class="line"> <span class="keyword">if</span> (err) &#123;</span><br><span class="line">   res.status(<span class="number">404</span>).json(err);</span><br><span class="line">   <span class="keyword">return</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">// If a user is found, log in, ie. return a token</span></span><br><span class="line">   <span class="keyword">if</span>(user)&#123;</span><br><span class="line">     token = user.generateJwt();</span><br><span class="line">     res.status(<span class="number">200</span>);</span><br><span class="line">     res.json(&#123;</span><br><span class="line">        token : token</span><br><span class="line">     &#125;);</span><br><span class="line"> &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">   <span class="comment">// If user is not found, register the user, then return a token</span></span><br><span class="line">   <span class="keyword">var</span> user = <span class="keyword">new</span> User();</span><br><span class="line">   user.name = req.body.email;</span><br><span class="line">   user.email = req.body.email;</span><br><span class="line">   user.setPassword(req.body.password);</span><br><span class="line">   user.save(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">     <span class="keyword">var</span> token;</span><br><span class="line">     token = user.generateJwt();</span><br><span class="line">     res.status(<span class="number">200</span>);</span><br><span class="line">     res.json(&#123;</span><br><span class="line">        token : token</span><br><span class="line">     &#125;);</span><br><span class="line">   &#125;);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>So that’s it for the server side code, and similar logic can be applied to the login route. Now we move on to AngularJS, where we use a service to access the above route. As you can see below the JWT is stored in local storage when the user logs in.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">AuthenticationService</span>(<span class="params">$http, $window</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">var</span> saveToken = <span class="function"><span class="keyword">function</span> (<span class="params">token</span>) </span>&#123;</span><br><span class="line">   $<span class="built_in">window</span>.localStorage[<span class="string">'jwt-token'</span>] = token;</span><br><span class="line"> &#125;;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">var</span> getToken = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="keyword">return</span> $<span class="built_in">window</span>.localStorage[<span class="string">'jwt-token'</span>];</span><br><span class="line"> &#125;;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">var</span> isLoggedIn = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="keyword">var</span> token = getToken();</span><br><span class="line">   <span class="keyword">var</span> payload;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(token)&#123;</span><br><span class="line">   payload = token.split(<span class="string">'.'</span>)[<span class="number">1</span>];</span><br><span class="line">   payload = $<span class="built_in">window</span>.atob(payload); <span class="comment">// .atob decodes the base64 String</span></span><br><span class="line">   payload = <span class="built_in">JSON</span>.parse(payload);</span><br><span class="line">   <span class="keyword">return</span> payload.exp &lt; <span class="built_in">Date</span>.now() / <span class="number">1000</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">   <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">var</span> currentUser = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(isLoggedIn())&#123;</span><br><span class="line">   <span class="keyword">var</span> token = getToken();</span><br><span class="line">   <span class="keyword">var</span> payload = token.split(<span class="string">'.'</span>)[<span class="number">1</span>];</span><br><span class="line">   payload = $<span class="built_in">window</span>.atob(payload); </span><br><span class="line">   payload = <span class="built_in">JSON</span>.parse(payload);</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">     email : payload.email,</span><br><span class="line">     name : payload.name</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">var</span> register = <span class="function"><span class="keyword">function</span>(<span class="params">user</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> $http.post(<span class="string">'/api/register'</span>, user).success(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">  saveToken(data.token);</span><br><span class="line">  &#125;);</span><br><span class="line"> &#125;;</span><br></pre></td></tr></table></figure>
+<p>The last step is to use these services, which in turn uses our routes, in our controllers:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$rootScope.root.onSubmit = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	AuthService</span><br><span class="line">	.register($rootScope.root.credentials)</span><br><span class="line">	.error(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">		alert(err);</span><br><span class="line">	&#125;)</span><br><span class="line">	.then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		$location.path(<span class="string">'/'</span>);</span><br><span class="line">		$rootScope.root.isLoggedIn = AuthService.isLoggedIn();</span><br><span class="line">		$rootScope.root.currentUser = AuthService.currentUser();</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">$rootScope.root.onLogout = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	AuthService.logout();</span><br><span class="line">	$location.path(<span class="string">'/'</span>);</span><br><span class="line">	$rootScope.root.isLoggedIn = AuthService.isLoggedIn();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>And here’s what the form looks like:</p>
+<p><img class="alignnone size-full wp-image-805" src="http://blog.loklak.net/wp-content/uploads/2016/06/3em8ytqdyc.gif" alt="3eM8YtQdYC" width="888" height="649"></p>
+<p>As you can see, there is still more work to be done to connect this with the rest of the app, but hopefully those reading can better understand how to implement local auth using JWTs on their SPA.</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/22/A-tweet-feed-for-loklak-org/" itemprop="url">
+                  A tweet feed for loklak.org 
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            Posted on
+            <time itemprop="dateCreated" datetime="2016-05-22T09:20:21+08:00" content="2016-05-22">
+              2016-05-22
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/05/22/A-tweet-feed-for-loklak-org/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/22/A-tweet-feed-for-loklak-org/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>Loklak.org has a page for <a href="http://loklak.org/apps/applist/index.html" target="_blank" rel="external">front-end apps</a> that showcase the uses of loklak’s API, and in the first week I’ve tried to warm up for GSOC by making a ‘realtime’ twitter feed, as the existing front-end apps were mainly single http get requests and didn’t seem very appealing to me, and also to prepare for my <a href="http://leonmak.me/2016/05/21/Google-Summer-of-Code-Loklak/" target="_blank" rel="external">front-end app data visualisations GSOC project</a>.</p>
+<p>To obtain updated data, the app polls the loklak API on a regular interval. This is done rather simply by using $interval in AngularJS, which is just a wrapper around window.setInterval(). For the realtime feed, I set the minimum rate for querying at an arbitrary 1min so as not to exceed the limits.</p>
+<p>The next thing I needed to solve was where to store the data, as I didn’t have a database to work with, local storage was the only option. A useful module for this is “<a href="https://github.com/gsklee/ngStorage" target="_blank" rel="external">ngStorage</a>“. At a maximum of 5MB it isn’t much, but decent enough to store a few thousand tweets and showcase the features of loklak. If developers wanted to create an external app for loklak, they could also use the front-end apps if they were well modularized.</p>
+<p>Lastly, to display in a fancy pinterest-like grid, I’ve decided to use an angular module called “<a href="https://github.com/s-yadav/angulargrid" target="_blank" rel="external">angulargrid</a>“. To achieve the infinite scroll effect, I created another scope variable, to take a subset of the data in local storage. AngularJS then helps with rendering changes in the data model to the feed, by using $watch() on local storage.</p>
+<p>Do checkout the <a href="http://loklak.org/apps/tweetfeed/" target="_blank" rel="external">tweetfeed</a>:</p>
+<p><img class="alignnone size-full wp-image-137" src="http://blog.loklak.net/wp-content/uploads/2016/05/tweetfeed.gif" alt="tweetfeed" width="1437" height="804"></p>
+<p>Some areas to improve:</p>
+<ul>
+    <li>Refactor services to make it more modular</li>
+    <li>Improve the regex to account for emojis and other tags</li>
+</ul>
+
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/21/Google-Summer-of-Code-Loklak/" itemprop="url">
                   Google Summer of Code: Loklak
                 </a>
@@ -565,7 +767,7 @@ type: &quot;tags&quot;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
