@@ -227,6 +227,98 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/11/Twemojis-for-React-Mapbox-gl/" itemprop="url">
+                  Twemojis for React & Mapbox gl
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            Posted on
+            <time itemprop="dateCreated" datetime="2016-09-11T14:39:25+08:00" content="2016-09-11">
+              2016-09-11
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/09/11/Twemojis-for-React-Mapbox-gl/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/09/11/Twemojis-for-React-Mapbox-gl/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <h1 id="Emoji-Problem"><a href="#Emoji-Problem" class="headerlink" title="Emoji Problem"></a>Emoji Problem</h1><p>So my group decided on doing an app using emoji’s and mapbox, it’s Pokemon Go for chat where you (or businesses) could drop and discover messages (mockup screenshots below) around you. Well apparently you need to <a href="https://www.mapbox.com/help/custom-markers/" target="_blank" rel="external">upload images to Mapbox Studio for custom marker icons in MapboxGL</a>, the only other custom image (using css) was the user’s avartar which updated on map move rather than as a marker property. We thought we could upload all 1200+ emoji / 874 twemoji svg files and be done (they were only 1mb, why not?), but strangely there was an (AFAIK) undocumented 500 sprite limit. </p>
+<h1 id="Lesser-is-better"><a href="#Lesser-is-better" class="headerlink" title="Lesser is better"></a>Lesser is better</h1><p>Anyway emojis like flags and letters would not be too relevant for our purposes, so we just had to choose which emojis we would support. Based on <a href="http://emojitracker.com/" target="_blank" rel="external">http://emojitracker.com/</a> we thought that using the people + objects categories (425 twemojis) would cover well enough ground for people to post their reactions and activities.</p>
+<h1 id="How-to-get-the-files"><a href="#How-to-get-the-files" class="headerlink" title="How to get the files"></a>How to get the files</h1><p>The next step was to upload the svgs. To choose a subset of <a href="https://github.com/twitter/twemoji" target="_blank" rel="external">twemojis</a> to upload to Mapbox Studio and to use with <a href="https://github.com/chadoh/react-emoji-picker" target="_blank" rel="external">react-emoji-picker</a> in our app, I had to first get the list of twemojis we would support on the emoji picker. There was a category to name mapping, then there was a name to unicode mapping, put the two together and a script and tada I got the files, here’s <a href="https://github.com/leonmak/twemoji-filter" target="_blank" rel="external">the repo</a>.</p>
+<h1 id="Mockups-of-our-app"><a href="#Mockups-of-our-app" class="headerlink" title="Mockups of our app"></a>Mockups of our app</h1><div class="group-picture"><div class="group-picture-container"><div class="group-picture-row"><div class="group-picture-column" style="width: 33.333333333333336%;"><a href="http://res.cloudinary.com/leonmak/image/upload/v1473578344/drop/List.png" class="fancybox" rel="external" target="_blank"><img src="http://res.cloudinary.com/leonmak/image/upload/v1473578344/drop/List.png" alt=""></a></div><div class="group-picture-column" style="width: 33.333333333333336%;"><a href="http://res.cloudinary.com/leonmak/image/upload/c_scale,w_421/v1473578345/drop/Map.jpg" class="fancybox" rel="external" target="_blank"><img src="http://res.cloudinary.com/leonmak/image/upload/c_scale,w_421/v1473578345/drop/Map.jpg" alt=""></a></div><div class="group-picture-column" style="width: 33.333333333333336%;"><a href="http://res.cloudinary.com/leonmak/image/upload/v1473578343/drop/Drop_group.png" class="fancybox" rel="external" target="_blank"><img src="http://res.cloudinary.com/leonmak/image/upload/v1473578343/drop/Drop_group.png" alt=""></a></div></div><div class="group-picture-row"></div></div></div>
+<h2 id="What-it-looks-like-now"><a href="#What-it-looks-like-now" class="headerlink" title="What it looks like now"></a>What it looks like now</h2><div class="group-picture"><div class="group-picture-container"><div class="group-picture-row"><div class="group-picture-column" style="width: 33.333333333333336%;"><a href="http://res.cloudinary.com/leonmak/image/upload/v1473662951/drop/Screenshot_2016-09-12_14.47.11.png" class="fancybox" rel="external" target="_blank"><img src="http://res.cloudinary.com/leonmak/image/upload/v1473662951/drop/Screenshot_2016-09-12_14.47.11.png" alt=""></a></div><div class="group-picture-column" style="width: 33.333333333333336%;"><a href="http://res.cloudinary.com/leonmak/image/upload/v1473662951/drop/Screenshot_2016-09-12_14.48.29.png" class="fancybox" rel="external" target="_blank"><img src="http://res.cloudinary.com/leonmak/image/upload/v1473662951/drop/Screenshot_2016-09-12_14.48.29.png" alt=""></a></div><div class="group-picture-column" style="width: 33.333333333333336%;"><a href="http://res.cloudinary.com/leonmak/image/upload/v1473662952/drop/Screenshot_2016-09-12_14.46.05.png" class="fancybox" rel="external" target="_blank"><img src="http://res.cloudinary.com/leonmak/image/upload/v1473662952/drop/Screenshot_2016-09-12_14.46.05.png" alt=""></a></div></div><div class="group-picture-row"></div></div></div>
+<h3 id="Edit-Check-it-out-https-drop-dev-surge-sh"><a href="#Edit-Check-it-out-https-drop-dev-surge-sh" class="headerlink" title="Edit: Check it out - https://drop-dev.surge.sh/"></a>Edit: Check it out - <a href="https://drop-dev.surge.sh/" target="_blank" rel="external">https://drop-dev.surge.sh/</a></h3>
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/30/Application-Critique-Discord/" itemprop="url">
                   Application critque - Discord
                 </a>
@@ -1112,107 +1204,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/07/Manual-Moderation-tweet-storage/" itemprop="url">
-                  Manual Moderation - tweet storage
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            Posted on
-            <time itemprop="dateCreated" datetime="2016-06-07T09:40:02+08:00" content="2016-06-07">
-              2016-06-07
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2016/06/07/Manual-Moderation-tweet-storage/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/07/Manual-Moderation-tweet-storage/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>Loklak walls are going to get a new feature called manual moderation! You may have seen it in the coming soon section of the content tab when you were creating a wall.</p>
-<p>For the walls application we have decided to use Mongodb so we can query an external API like loklak_server, then store tweets in the Mongodb database. So the first question we have to think about before storing it is how to model it in our Mongoose schemas. To answer that we have to consider the access patterns of our web app, as it is critical in deciding how we model the collection in mongodb - whether we should embed the data in an existing collection, keep all tweets for a wall in an array in one document in the collection, or store each tweet as a a document itself and query them.</p>
-<p>The main issue is that the number of tweets could keep growing, so we can’t embed nor store them in an array in a document. Mongodb has a document size limit of 16MB (for the unfamilar, a document is to a row as collection is to a table), so we could very realistically hit that if we stored all tweets in an array.</p>
-<p>Another issue is the frequency of access, and updates of the tweet data. If we embedded the data, we could hit the size limit and it would not make sense to keep retrieving extra information that would not be needed if we only wanted the tweets array. Also to update individual tweets we would have to save the whole array, for just one tweet!</p>
-<p>Thus in our case I have chosen the last option, and created a separate mongodb collection to store the tweets individually as I have modeled them as a one to many, (1 walls - many tweets) relationship. Although it could also be seen as a many to many relationship between walls and tweets, to control the approval status for each requires us to treat each tweet as separate from each other as one could be approved but another rejected. So in the schema I have userWallId used for querying all tweets belonging to a certain wall of a certain user, notice the index:true option which helps speed up the query by indexing the userWallId field.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> TweetSchema = <span class="keyword">new</span> Schema(&#123;</span><br><span class="line"> userWallId: &#123; type: <span class="built_in">String</span>, required: <span class="literal">true</span>, index: <span class="literal">true</span> &#125;,</span><br><span class="line"> approval: <span class="built_in">Boolean</span>,</span><br><span class="line"> timestamp: <span class="built_in">String</span>,</span><br><span class="line"> created_at: <span class="built_in">String</span>,</span><br><span class="line">,...</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>In contrast I have chosen to embed the wall options themselves into the user’s own collection, as this is a “one-few” relation, and we can denormalize it by embedding the wall options within an array in the user object. Denormalizing as such in Mongodb allows us to query it faster as we do not have to perform another lookup for the wall options if it were in another collection.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> UserSchema = <span class="keyword">new</span> Schema(&#123;</span><br><span class="line"> name: &#123; type: <span class="built_in">String</span>, required: <span class="literal">true</span> &#125;,</span><br><span class="line"> local: &#123;..&#125;,</span><br><span class="line"> isVerified: &#123; type: <span class="built_in">Boolean</span>, required: <span class="literal">true</span> &#125;,</span><br><span class="line"> twitter: &#123;..&#125;,</span><br><span class="line"> apps: &#123;</span><br><span class="line">   wall: [&#123;</span><br><span class="line">      profanity: <span class="built_in">Boolean</span>,</span><br><span class="line">      images: <span class="built_in">Boolean</span>,</span><br><span class="line">       <span class="comment">//...other wall options</span></span><br><span class="line">   &#125;]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>To store the tweets we will then have to create a route to handle post requests:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">router.post (<span class="string">'/tweets/:userId/:wallId'</span>, auth,  <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line"> req.body.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">tweet</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">var</span> newTweet = <span class="keyword">new</span> Tweet(tweet);</span><br><span class="line">   newTweet.save(<span class="function"><span class="keyword">function</span>(<span class="params">err,result</span>)</span>&#123;</span><br><span class="line">   ...</span><br><span class="line">  &#125;);</span><br><span class="line"> &#125;)</span><br><span class="line"> res.jsonp(&#123;message: &amp;quot;inserted &amp;quot;+ req.body.length&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>And in the front end angular app we can use these routes to store our new tweets with $http.post:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> posturl= <span class="string">'/api/tweets/'</span>+ $rootScope.root.currentUser._id + <span class="string">'/'</span> + $scope.userWalls[$scope.userWalls.length - <span class="number">1</span>].id;</span><br><span class="line"></span><br><span class="line">SearchService.initData(searchParams).then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// get tweets array from loklak_server and set all tweets to default false for approval status</span></span><br><span class="line"></span><br><span class="line">data.statuses.map(<span class="function"><span class="keyword">function</span>(<span class="params">tweet</span>)</span>&#123;</span><br><span class="line"> tweet.userWallId = userWallId;</span><br><span class="line"> tweet.approval = <span class="literal">false</span>; </span><br><span class="line"> &#125;)</span><br><span class="line"></span><br><span class="line">$http.post(posturl, data.statuses)</span><br></pre></td></tr></table></figure>
-<p>The end result is that we can do a get request at the moderation tab page for that wall’s tweets and display it as such:</p>
-<p><img class="alignnone size-full wp-image-2129" src="http://blog.loklak.net/wp-content/uploads/2016/06/screenshot-2016-06-18-07-02-04.png" alt="Screenshot 2016-06-18 07.02.04.png" width="720" height="402"></p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1259,7 +1250,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-count">26</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>

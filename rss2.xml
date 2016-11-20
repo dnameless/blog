@@ -8,8 +8,63 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Thu, 17 Nov 2016 15:03:13 GMT</pubDate>
+    <pubDate>Sun, 20 Nov 2016 09:57:55 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Review of applications built in CS3216</title>
+      <link>http://leonmak.me/2016/11/20/Review-of-applications-built-in-CS3216/</link>
+      <guid>http://leonmak.me/2016/11/20/Review-of-applications-built-in-CS3216/</guid>
+      <pubDate>Sun, 20 Nov 2016 09:20:44 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;I thought of doing a more specific breakdown of the web applications I had contributed to. Hopefully this can also give people (like my j
+      
+      </description>
+      
+      <content:encoded><![CDATA[<p>I thought of doing a more specific breakdown of the web applications I had contributed to. Hopefully this can also give people (like my juniors) who want to take this module an idea of what to expect, but really the type of ideas are limited by your creativity. There are also some groups who did native for final project, but it’s because they are (really) good at it. I’ll not be covering Assignment 2 as it was an application critique and no building was done. If you’re rreallyy ‘kiasu’ (scared to lose) also check out the <a href="http://cs3216.com/coursework" target="_blank" rel="external">CS3216 website</a>.</p>
+<p><br></p>
+<h1 id="Assignment-1-Facebook-application-Exchange-Buddy"><a href="#Assignment-1-Facebook-application-Exchange-Buddy" class="headerlink" title="Assignment 1: Facebook application - Exchange Buddy"></a>Assignment 1: Facebook application - <a href="http://app.exchangebuddy.com" target="_blank" rel="external">Exchange Buddy</a></h1><h3 id="Description"><a href="#Description" class="headerlink" title="Description:"></a>Description:</h3><p>Web application for exchangebuddy.com started by Eugene to connect people going for exchange programs. Parts of Facebook API used: facebook login, facebook events API. We received the highest ‘coolness’ factor points but we got about average overall mainly due to our report being rushed, and thus not answering some of the questions properly.</p>
+<h3 id="Features"><a href="#Features" class="headerlink" title="Features:"></a>Features:</h3><ul>
+<li>Grouping exchange students by their exchange batch </li>
+<li>Real-time chat for exchange group</li>
+<li>Events lookup (using facebook and meetup.com API)</li>
+<li>Collaborative editing of tips</li>
+</ul>
+<h3 id="Stack"><a href="#Stack" class="headerlink" title="Stack:"></a>Stack:</h3><ul>
+<li>Front-end: React, MeteorJS (for real-time pub-sub)</li>
+<li>Back-end: MySQL</li>
+<li>Hosting: Digital Ocean (frontend), Irvin’s VPS (backend)</li>
+</ul>
+<p><br></p>
+<h1 id="Assignment-3-Progressive-Web-App-Drop-Ins"><a href="#Assignment-3-Progressive-Web-App-Drop-Ins" class="headerlink" title="Assignment 3: Progressive Web App - Drop Ins"></a>Assignment 3: Progressive Web App - <a href="https://dropins.space/" target="_blank" rel="external">Drop Ins</a></h1><h3 id="Description-1"><a href="#Description-1" class="headerlink" title="Description:"></a>Description:</h3><p>Realtime chat application where you can drop emoticon pins on a pokémon GO themed map, supporting videos and soundcloud links. Got above average for this but I thought we could have polished it a bit more if we had more time. Uses facebook login.</p>
+<h3 id="Features-1"><a href="#Features-1" class="headerlink" title="Features:"></a>Features:</h3><ul>
+<li>Real time updates of ‘drops’, votes, comments using socket.io</li>
+<li>3D Vector Map view using Mapbox GL</li>
+<li>Offline caching with sw-* packages</li>
+</ul>
+<h3 id="Stack-1"><a href="#Stack-1" class="headerlink" title="Stack:"></a>Stack:</h3><ul>
+<li>Front-end: React (using <a href="https://github.com/facebookincubator/create-react-app/" target="_blank" rel="external">Create-React-App</a> boilerplate)</li>
+<li>Back-end: MySQL</li>
+<li>Hosting: Heroku (frontend), AWS RDS (SQL server)</li>
+</ul>
+<p><br></p>
+<h1 id="Final-Project-1our"><a href="#Final-Project-1our" class="headerlink" title="Final Project - 1our"></a>Final Project - <a href="https://1our.today" target="_blank" rel="external">1our</a></h1><h3 id="Description-2"><a href="#Description-2" class="headerlink" title="Description:"></a>Description:</h3><p>1our is a platform for NUS students maximize their time in school, and get paid for it. We do this by bringing them fun and interesting projects, studies as well as experiments that they can be part of. 1our also wants to help NUS student researchers and professors succeed in whatever they are doing, be it a study on decision-making behavior or an experiment pushing the frontiers of science.</p>
+<h3 id="Features-2"><a href="#Features-2" class="headerlink" title="Features:"></a>Features:</h3><ul>
+<li>NUS OPENID login</li>
+<li>Time slots for each ad-hoc jobs</li>
+<li>Tracking of money earned through platform</li>
+<li>Listing of adhoc jobs by category with sorting and filtering</li>
+</ul>
+<h3 id="Stack-2"><a href="#Stack-2" class="headerlink" title="Stack:"></a>Stack:</h3><ul>
+<li>Front-end: React, Webpack</li>
+<li>Back-end: PostgreSQL</li>
+<li>Hosting: AWS EC2 (frontend), AWS RDS (backend)</li>
+</ul>
+]]></content:encoded>
+      
+      <comments>http://leonmak.me/2016/11/20/Review-of-applications-built-in-CS3216/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>Reflecting on the journey of CS3216</title>
@@ -18,11 +73,11 @@
       <pubDate>Thu, 17 Nov 2016 14:16:19 GMT</pubDate>
       <description>
       
-        &lt;p&gt;Now that STePS is over and all my backdated blog posts are done, I just want to write a sort of post-mortem on the whole process, which h
+        &lt;p&gt;Now that STePS is over and all my backdated blog posts are done, I just want to write a general post-mortem on the whole process, which h
       
       </description>
       
-      <content:encoded><![CDATA[<p>Now that STePS is over and all my backdated blog posts are done, I just want to write a sort of post-mortem on the whole process, which hopefully would be useful for anyone considering to take this mod.</p>
+      <content:encoded><![CDATA[<p>Now that STePS is over and all my backdated blog posts are done, I just want to write a general post-mortem on the whole process, which hopefully would be useful for anyone considering to take this mod.</p>
 <p>Firstly, if you’re considering whether to apply, I would say just work hard to level up before applying and just give it your best shot. I too was concerned about whether I was good enough, I had applied at the end of year 1 sem 2, having done Orbital and GSoC in the summer. I could build web apps and do designs with PS and Sketch. That was my skillset, and although I know I wasn’t the best I knew I could hold my own ground and do the work. The people who apply for CS3216 all have serious skills and impressive portfolios - some of them were coming back from internships at Uber, Google, CS3217, etc. but my experience is that (mostly) everyone (technical people) can build what needs to be built. Some will do more work than others but it’s not the kind where 1 person carries the team, my own experience is that my teams for all 3 assignments had our own differentiated skillsets (biz, backend, frontend, design, etc.) After receiving my acceptance email I had actually considered dropping out as I thought I was not good enough, if not for my persistent friends who encouraged me, I would have missed this amazing opportunity to sharpen my skills.</p>
 <h1 id="Teamwork"><a href="#Teamwork" class="headerlink" title="Teamwork"></a>Teamwork</h1><p>I think picking the right team really helped, being more of the front-end developer I could design and also implement mockups using React/ Angular. Being used to developing with mongoDB and noSQL really was a pain, as the assignments required us to use a SQL database for the schema diagrams and such, but fortunately there was always someone who knew how to settle the backend.</p>
 <p>I’m glad to have known all my teammates, it was awesome working with these fun and talented people. (Irvin, Chi Thanh Lam, Eugene, Larry, Thành Nguyễn Hữu, Kai Yi, Xu Jie, Kent)</p>
@@ -546,36 +601,6 @@
 ]]></content:encoded>
       
       <comments>http://leonmak.me/2016/06/11/Protecting-API-routes-using-JWTs/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>Manual Moderation - tweet storage</title>
-      <link>http://leonmak.me/2016/06/07/Manual-Moderation-tweet-storage/</link>
-      <guid>http://leonmak.me/2016/06/07/Manual-Moderation-tweet-storage/</guid>
-      <pubDate>Tue, 07 Jun 2016 01:40:02 GMT</pubDate>
-      <description>
-      
-        &lt;p&gt;Loklak walls are going to get a new feature called manual moderation! You may have seen it in the coming soon section of the content tab 
-      
-      </description>
-      
-      <content:encoded><![CDATA[<p>Loklak walls are going to get a new feature called manual moderation! You may have seen it in the coming soon section of the content tab when you were creating a wall.</p>
-<p>For the walls application we have decided to use Mongodb so we can query an external API like loklak_server, then store tweets in the Mongodb database. So the first question we have to think about before storing it is how to model it in our Mongoose schemas. To answer that we have to consider the access patterns of our web app, as it is critical in deciding how we model the collection in mongodb - whether we should embed the data in an existing collection, keep all tweets for a wall in an array in one document in the collection, or store each tweet as a a document itself and query them.</p>
-<p>The main issue is that the number of tweets could keep growing, so we can’t embed nor store them in an array in a document. Mongodb has a document size limit of 16MB (for the unfamilar, a document is to a row as collection is to a table), so we could very realistically hit that if we stored all tweets in an array.</p>
-<p>Another issue is the frequency of access, and updates of the tweet data. If we embedded the data, we could hit the size limit and it would not make sense to keep retrieving extra information that would not be needed if we only wanted the tweets array. Also to update individual tweets we would have to save the whole array, for just one tweet!</p>
-<p>Thus in our case I have chosen the last option, and created a separate mongodb collection to store the tweets individually as I have modeled them as a one to many, (1 walls - many tweets) relationship. Although it could also be seen as a many to many relationship between walls and tweets, to control the approval status for each requires us to treat each tweet as separate from each other as one could be approved but another rejected. So in the schema I have userWallId used for querying all tweets belonging to a certain wall of a certain user, notice the index:true option which helps speed up the query by indexing the userWallId field.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> TweetSchema = <span class="keyword">new</span> Schema(&#123;</span><br><span class="line"> userWallId: &#123; type: <span class="built_in">String</span>, required: <span class="literal">true</span>, index: <span class="literal">true</span> &#125;,</span><br><span class="line"> approval: <span class="built_in">Boolean</span>,</span><br><span class="line"> timestamp: <span class="built_in">String</span>,</span><br><span class="line"> created_at: <span class="built_in">String</span>,</span><br><span class="line">,...</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>In contrast I have chosen to embed the wall options themselves into the user’s own collection, as this is a “one-few” relation, and we can denormalize it by embedding the wall options within an array in the user object. Denormalizing as such in Mongodb allows us to query it faster as we do not have to perform another lookup for the wall options if it were in another collection.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> UserSchema = <span class="keyword">new</span> Schema(&#123;</span><br><span class="line"> name: &#123; type: <span class="built_in">String</span>, required: <span class="literal">true</span> &#125;,</span><br><span class="line"> local: &#123;..&#125;,</span><br><span class="line"> isVerified: &#123; type: <span class="built_in">Boolean</span>, required: <span class="literal">true</span> &#125;,</span><br><span class="line"> twitter: &#123;..&#125;,</span><br><span class="line"> apps: &#123;</span><br><span class="line">   wall: [&#123;</span><br><span class="line">      profanity: <span class="built_in">Boolean</span>,</span><br><span class="line">      images: <span class="built_in">Boolean</span>,</span><br><span class="line">       <span class="comment">//...other wall options</span></span><br><span class="line">   &#125;]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>To store the tweets we will then have to create a route to handle post requests:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">router.post (<span class="string">'/tweets/:userId/:wallId'</span>, auth,  <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line"> req.body.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">tweet</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">var</span> newTweet = <span class="keyword">new</span> Tweet(tweet);</span><br><span class="line">   newTweet.save(<span class="function"><span class="keyword">function</span>(<span class="params">err,result</span>)</span>&#123;</span><br><span class="line">   ...</span><br><span class="line">  &#125;);</span><br><span class="line"> &#125;)</span><br><span class="line"> res.jsonp(&#123;message: &amp;quot;inserted &amp;quot;+ req.body.length&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>And in the front end angular app we can use these routes to store our new tweets with $http.post:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> posturl= <span class="string">'/api/tweets/'</span>+ $rootScope.root.currentUser._id + <span class="string">'/'</span> + $scope.userWalls[$scope.userWalls.length - <span class="number">1</span>].id;</span><br><span class="line"></span><br><span class="line">SearchService.initData(searchParams).then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// get tweets array from loklak_server and set all tweets to default false for approval status</span></span><br><span class="line"></span><br><span class="line">data.statuses.map(<span class="function"><span class="keyword">function</span>(<span class="params">tweet</span>)</span>&#123;</span><br><span class="line"> tweet.userWallId = userWallId;</span><br><span class="line"> tweet.approval = <span class="literal">false</span>; </span><br><span class="line"> &#125;)</span><br><span class="line"></span><br><span class="line">$http.post(posturl, data.statuses)</span><br></pre></td></tr></table></figure>
-<p>The end result is that we can do a get request at the moderation tab page for that wall’s tweets and display it as such:</p>
-<p><img class="alignnone size-full wp-image-2129" src="http://blog.loklak.net/wp-content/uploads/2016/06/screenshot-2016-06-18-07-02-04.png" alt="Screenshot 2016-06-18 07.02.04.png" width="720" height="402"></p>
-]]></content:encoded>
-      
-      <comments>http://leonmak.me/2016/06/07/Manual-Moderation-tweet-storage/#disqus_thread</comments>
     </item>
     
   </channel>
