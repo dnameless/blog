@@ -3,7 +3,7 @@
   xmlns:atom="http://www.w3.org/2005/Atom"
   xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Leon Blogs</title>
+    <title>Leon Mak</title>
     <link>http://leonmak.me/</link>
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
