@@ -112,12 +112,12 @@ var CommentList = function (_React$Component) {
 								React.createElement(
 									'div',
 									{ className: 'print-author' },
-									comment.author + ' - ' + comment.datetime,
-									React.createElement(
-										'span',
-										{ onClick: _this2.deleteComment(i), className: 'delete-comment' },
-										'Delete'
-									)
+									comment.author + ' - ' + comment.datetime
+								),
+								React.createElement(
+									'div',
+									{ onClick: _this2.deleteComment(i), className: 'delete-comment' },
+									'Delete'
 								),
 								comment.text
 							);
@@ -217,6 +217,7 @@ var CommentBox = function (_React$Component3) {
 		};
 
 		_this4.handleCommentDelete = function (index) {
+			console.log(index);
 			_this4.setState({ data: _this4.state.data.filter(function (comment) {
 					return comment.id != index;
 				}) });

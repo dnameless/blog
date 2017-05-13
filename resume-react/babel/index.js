@@ -67,8 +67,8 @@ class CommentList extends React.Component {
 								<div className='comment-node' key={i} style={style}>
 									<div className='print-author'>
 										{`${comment.author} - ${comment.datetime}`}
-										<span onClick={this.deleteComment(i)} className="delete-comment">Delete</span>
 									</div> 
+									<div onClick={this.deleteComment(i)} className="delete-comment">Delete</div>
 									{comment.text}
 								</div>
 							)
@@ -158,6 +158,7 @@ class CommentBox extends React.Component {
 	}
 	
 	handleCommentDelete = index => {
+console.log(index);
 		this.setState({data: this.state.data.filter((comment) => comment.id != index)})
 	}
 
