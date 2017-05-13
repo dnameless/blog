@@ -214,9 +214,11 @@ var CommentBox = function (_React$Component3) {
 		value: function listenToFirebaseComments() {
 			var _this5 = this;
 
-			var commentsRef = defaultDatabase.ref('/comments');
+			var commentsRef = defaultDatabase.ref('comments/');
 			defaultDatabase.on('value', function (snapshot) {
-				_this5.state = { data: snapshot.val() };
+				var commentsList = snapshot.val();
+				console.log(commentsList);
+				_this5.state = { data: commentsList };
 			});
 		}
 	}, {
