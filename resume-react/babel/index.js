@@ -52,7 +52,7 @@ class CommentList extends React.Component {
 		return (e) => {
 			e.preventDefault()
 			this.props.onCommentDelete(index)
-			commentsRef.ref('index/').delete()
+			commentsRef.ref('index/').remove()
 		}
 	}
 
@@ -151,7 +151,7 @@ class CommentBox extends React.Component {
 	}
 
 	handleCommentSubmit = comment => {
-		const newId = this.state.data.length + 1
+		const newId = `${comment.datetime}${this.state.data.length + 1}`
 		let updates = {}
 		comment['id'] = newId
 		updates[newId] = comment
@@ -160,7 +160,6 @@ class CommentBox extends React.Component {
 	}
 	
 	handleCommentDelete = index => {
-console.log(index);
 		this.setState({data: this.state.data.filter((comment) => comment.id != index)})
 	}
 
