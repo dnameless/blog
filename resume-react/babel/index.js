@@ -147,7 +147,7 @@ class CommentBox extends React.Component {
 		comment['id'] = newId
 		// this.setState({data: this.state.data.concat(comment)})
 		// post firebase comments
-		commentsRef.update({newId: comment})
+		this.commentsRef.update({newId: comment})
 	}
 
 	handleCommentRemove = commentIndex => {

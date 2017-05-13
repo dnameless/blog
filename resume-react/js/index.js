@@ -195,7 +195,7 @@ var CommentBox = function (_React$Component3) {
 			comment['id'] = newId;
 			// this.setState({data: this.state.data.concat(comment)})
 			// post firebase comments
-			commentsRef.update({ newId: comment });
+			_this4.commentsRef.update({ newId: comment });
 		};
 
 		_this4.handleCommentRemove = function (commentIndex) {
