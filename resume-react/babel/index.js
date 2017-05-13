@@ -76,7 +76,7 @@ class CommentList extends React.Component {
 class CommentForm extends React.Component {
 	constructor() {
 		super()
-		this.state = {author: '', text: '', canPost: 'disabled'}
+		this.state = {author: '', text: ''}
 	}
 
 	handleAuthorChange(e) {
@@ -123,7 +123,7 @@ class CommentForm extends React.Component {
 				<input 
 					type='submit'
 					value='Post'
-					disabled={!this.state.author.trim() || !this.state.text.trim()}
+					disabled={!this.state.author.trim().length || !this.state.text.trim().length }
 				/>
 			</form>
 		)
@@ -148,9 +148,16 @@ class CommentBox extends React.Component {
 		// post firebase comments
 	}
 
+	handleCommentRemove(commentIndex) {
+		this.setState({data: this.state.data.splice(commentIndex, 1)})
+	}
+
 	listenToFirebaseComments() {
-		this.commentsRef.on('child_added', (snapshot) => {
-			this.handleCommentSubmit(snapshot.val())
+		this.commentsRef.on('child_added', (data) => {
+			this.handleCommentSubmit(data.val())
+		})
+		this.commentsRef.on('child_removed', (data) => {
+			this.handleCommentRemove(data.key)
 		})
 	}
 

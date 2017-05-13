@@ -122,7 +122,7 @@ var CommentForm = function (_React$Component2) {
 
 		var _this3 = _possibleConstructorReturn(this, (CommentForm.__proto__ || Object.getPrototypeOf(CommentForm)).call(this));
 
-		_this3.state = { author: '', text: '', canPost: 'disabled' };
+		_this3.state = { author: '', text: '' };
 		return _this3;
 	}
 
@@ -176,7 +176,7 @@ var CommentForm = function (_React$Component2) {
 				React.createElement('input', {
 					type: 'submit',
 					value: 'Post',
-					disabled: !this.state.author.trim() || !this.state.text.trim()
+					disabled: !this.state.author.trim().length || !this.state.text.trim().length
 				})
 			);
 		}
@@ -212,12 +212,20 @@ var CommentBox = function (_React$Component3) {
 			// post firebase comments
 		}
 	}, {
+		key: 'handleCommentRemove',
+		value: function handleCommentRemove(commentIndex) {
+			this.setState({ data: this.state.data.splice(commentIndex, 1) });
+		}
+	}, {
 		key: 'listenToFirebaseComments',
 		value: function listenToFirebaseComments() {
 			var _this5 = this;
 
-			this.commentsRef.on('child_added', function (snapshot) {
-				_this5.handleCommentSubmit(snapshot.val());
+			this.commentsRef.on('child_added', function (data) {
+				_this5.handleCommentSubmit(data.val());
+			});
+			this.commentsRef.on('child_removed', function (data) {
+				_this5.handleCommentRemove(data.key);
 			});
 		}
 	}, {
