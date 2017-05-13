@@ -215,10 +215,13 @@ var CommentBox = function (_React$Component3) {
 			var _this5 = this;
 
 			var commentsRef = defaultDatabase.ref('comments/');
-			defaultDatabase.on('value', function (snapshot) {
+			commentsRef.on('child_added', function (snapshot) {
+				handleCommentSubmit(snapshot.val());
+			});
+			commentsRef.once('value').then(function (snapshot) {
 				var commentsList = snapshot.val();
-				console.log(commentsList);
 				_this5.state = { data: commentsList };
+				console.log(commentsList);
 			});
 		}
 	}, {

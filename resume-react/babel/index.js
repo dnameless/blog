@@ -148,10 +148,13 @@ class CommentBox extends React.Component {
 
 	listenToFirebaseComments() {
 		const commentsRef = defaultDatabase.ref('comments/')
-		defaultDatabase.on('value', (snapshot) => {
+		commentsRef.on('child_added', (snapshot) => {
+			handleCommentSubmit(snapshot.val())
+		})
+		commentsRef.once('value').then((snapshot) => {
 			const commentsList = snapshot.val()
-			console.log(commentsList)
 			this.state = {data: commentsList}
+			console.log(commentsList)
 		})
 	}
 
