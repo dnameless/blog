@@ -15,8 +15,9 @@ var _ReactMotion = ReactMotion,
     spring = _ReactMotion.spring,
     TransitionMotion = _ReactMotion.TransitionMotion;
 
-// Helpers
+var commentsRef = defaultDatabase.ref('comments/');
 
+// Helpers
 var springPreset = {
 	wobbly: [120, 11]
 };
@@ -53,6 +54,7 @@ var CommentList = function (_React$Component) {
 			return function (e) {
 				e.preventDefault();
 				_this.props.onCommentDelete(index);
+				commentsRef.update({ index: null });
 			};
 		}, _temp), _possibleConstructorReturn(_this, _ret);
 	}
@@ -117,7 +119,7 @@ var CommentList = function (_React$Component) {
 								),
 								React.createElement(
 									'div',
-									{ onClick: _this2.deleteComment(i), className: 'delete-comment' },
+									{ onClick: _this2.deleteComment(comment.id), className: 'delete-comment' },
 									'Delete'
 								),
 								comment.text
@@ -214,7 +216,7 @@ var CommentBox = function (_React$Component3) {
 			comment['id'] = newId;
 			updates[newId] = comment;
 			_this4.setState({ data: _this4.state.data.concat(comment) });
-			_this4.commentsRef.update(updates);
+			commentsRef.update(updates);
 		};
 
 		_this4.handleCommentDelete = function (index) {
@@ -225,18 +227,17 @@ var CommentBox = function (_React$Component3) {
 		};
 
 		_this4.listenToFirebaseComments = function () {
-			_this4.commentsRef.on('child_added', function (data) {
+			commentsRef.on('child_added', function (data) {
 				var comment = data.val();
 				comment !== null && _this4.handleCommentSubmit(comment);
 			});
-			_this4.commentsRef.on('child_changed', function (data) {
+			commentsRef.on('child_changed', function (data) {
 				var comment = data.val();
 				comment !== null && _this4.handleCommentDelete(comment.id);
 			});
 		};
 
 		_this4.state = { data: [] };
-		_this4.commentsRef = defaultDatabase.ref('comments/');
 		return _this4;
 	}
 

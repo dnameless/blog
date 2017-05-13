@@ -1,4 +1,5 @@
 const {Motion, spring, TransitionMotion} = ReactMotion
+const commentsRef = defaultDatabase.ref('comments/')
 
 // Helpers
 const springPreset = { 
@@ -51,6 +52,7 @@ class CommentList extends React.Component {
 		return (e) => {
 			e.preventDefault()
 			this.props.onCommentDelete(index)
+			commentsRef.update({index: null})
 		}
 	}
 
@@ -69,7 +71,7 @@ class CommentList extends React.Component {
 									<div className='print-author'>
 										{`${comment.author} - ${comment.datetime}`}
 									</div> 
-									<div onClick={this.deleteComment(i)} className="delete-comment">Delete</div>
+									<div onClick={this.deleteComment(comment.id)} className="delete-comment">Delete</div>
 									{comment.text}
 								</div>
 							)
@@ -142,7 +144,6 @@ class CommentBox extends React.Component {
 	constructor() {
 		super()
 		this.state = {data: []}
-		this.commentsRef = defaultDatabase.ref('comments/')
 	}
 
 	componentDidMount() {
@@ -155,7 +156,7 @@ class CommentBox extends React.Component {
 		comment['id'] = newId
 		updates[newId] = comment
 		this.setState({data: this.state.data.concat(comment)})
-		this.commentsRef.update(updates)
+		commentsRef.update(updates)
 	}
 	
 	handleCommentDelete = index => {
@@ -164,11 +165,11 @@ console.log(index);
 	}
 
 	listenToFirebaseComments = () => {
-		this.commentsRef.on('child_added', (data) => {
+		commentsRef.on('child_added', (data) => {
 			const comment = data.val()
 			comment !== null && this.handleCommentSubmit(comment)
 		})
-		this.commentsRef.on('child_changed', (data) => {
+		commentsRef.on('child_changed', (data) => {
 			const comment = data.val()
 			comment !== null && this.handleCommentDelete(comment.id)
 		})
