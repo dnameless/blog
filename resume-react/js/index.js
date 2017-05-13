@@ -155,8 +155,7 @@ class CommentBox extends React.Component {
 		return (
 			<div className='comment-box'>
 				<h1>Comments</h1>
-				<CommentList data={this.state.data}/>
-				<CommentForm onCommentSubmit={this.handleCommentSubmit}/>
+				
 			</div>
 		)
 	};
@@ -164,5 +163,5 @@ class CommentBox extends React.Component {
 
 React.render(
 	<CommentBox/>,
-	document.getElementById('app')
+	document.getElementById('react-app')
 )
