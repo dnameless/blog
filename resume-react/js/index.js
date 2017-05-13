@@ -113,7 +113,7 @@ var CommentList = function (_React$Component) {
 									comment.author + ' - ' + comment.datetime,
 									React.createElement(
 										'div',
-										{ onPress: _this2.deleteComment, className: 'delete-comment' },
+										{ onClick: _this2.deleteComment, className: 'delete-comment' },
 										'Delete'
 									)
 								),
