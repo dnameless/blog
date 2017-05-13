@@ -254,13 +254,8 @@ var CommentBox = function (_React$Component3) {
 					null,
 					'Comments'
 				),
-				React.createElement(CommentList, {
-					data: this.state.data,
-					onCommentDelete: this.handleCommentDelete
-				}),
-				React.createElement(CommentForm, {
-					onCommentSubmit: this.handleCommentSubmit
-				})
+				React.createElement(CommentList, { data: this.state.data, onCommentDelete: this.handleCommentDelete }),
+				React.createElement(CommentForm, { onCommentSubmit: this.handleCommentSubmit })
 			);
 		}
 	}]);

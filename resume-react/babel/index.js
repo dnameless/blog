@@ -176,13 +176,8 @@ class CommentBox extends React.Component {
 		return (
 			<div className='comment-box'>
 				<h1>Comments</h1>
-				<CommentList 
-					data={this.state.data}
-					onCommentDelete={this.handleCommentDelete} 
-				/>
-				<CommentForm 
-					onCommentSubmit={this.handleCommentSubmit} 
-				/>
+				<CommentList data={this.state.data} onCommentDelete={this.handleCommentDelete} />
+				<CommentForm onCommentSubmit={this.handleCommentSubmit} />
 			</div>
 		)
 	}
