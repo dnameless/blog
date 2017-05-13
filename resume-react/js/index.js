@@ -122,37 +122,34 @@ var CommentForm = function (_React$Component2) {
 
 		var _this3 = _possibleConstructorReturn(this, (CommentForm.__proto__ || Object.getPrototypeOf(CommentForm)).call(this));
 
+		_this3.handleAuthorChange = function (e) {
+			_this3.setState({ author: e.target.value });
+		};
+
+		_this3.handleTextChange = function (e) {
+			_this3.setState({ text: e.target.value });
+		};
+
+		_this3.handleSubmit = function (e) {
+			e.preventDefault();
+			var author = _this3.state.author.trim(),
+			    text = _this3.state.text.trim();
+			if (!text || !author) {
+				return;
+			}
+			_this3.props.onCommentSubmit({
+				author: author,
+				text: text,
+				datetime: timeStamp()
+			});
+			_this3.setState({ text: '' });
+		};
+
 		_this3.state = { author: '', text: '' };
 		return _this3;
 	}
 
 	_createClass(CommentForm, [{
-		key: 'handleAuthorChange',
-		value: function handleAuthorChange(e) {
-			this.setState({ author: e.target.value });
-		}
-	}, {
-		key: 'handleTextChange',
-		value: function handleTextChange(e) {
-			this.setState({ text: e.target.value });
-		}
-	}, {
-		key: 'handleSubmit',
-		value: function handleSubmit(e) {
-			e.preventDefault();
-			var author = this.state.author.trim(),
-			    text = this.state.text.trim();
-			if (!text || !author) {
-				return;
-			}
-			this.props.onCommentSubmit({
-				author: author,
-				text: text,
-				datetime: timeStamp()
-			});
-			this.setState({ text: '' });
-		}
-	}, {
 		key: 'render',
 		value: function render() {
 			return React.createElement(
@@ -193,6 +190,35 @@ var CommentBox = function (_React$Component3) {
 
 		var _this4 = _possibleConstructorReturn(this, (CommentBox.__proto__ || Object.getPrototypeOf(CommentBox)).call(this));
 
+		_this4.handleCommentSubmit = function (comment) {
+			comment['id'] = _this4.state.data.length + 1;
+			_this4.setState({ data: _this4.state.data.concat(comment) });
+			// post firebase comments
+		};
+
+		_this4.handleCommentRemove = function (commentIndex) {
+			_this4.setState({ data: _this4.state.data.splice(commentIndex, 1) });
+		};
+
+		_this4.listenToFirebaseComments = function () {
+			_this4.commentsRef.on('child_added', function (data) {
+				_this4.handleCommentSubmit(data.val());
+			});
+			_this4.commentsRef.on('child_removed', function (data) {
+				_this4.handleCommentRemove(data.key);
+			});
+		};
+
+		_this4.getFirebaseComments = function () {
+			_this4.commentsRef.once('value').then(function (snapshot) {
+				var commentsList = snapshot.val();
+				if (commentsList !== null) {
+					_this4.state = { data: commentsList };
+				}
+				console.log(commentsList);
+			});
+		};
+
 		_this4.state = { data: [] };
 		_this4.commentsRef = defaultDatabase.ref('comments/');
 		return _this4;
@@ -203,43 +229,6 @@ var CommentBox = function (_React$Component3) {
 		value: function componentDidMount() {
 			this.listenToFirebaseComments();
 			this.getFirebaseComments();
-		}
-	}, {
-		key: 'handleCommentSubmit',
-		value: function handleCommentSubmit(comment) {
-			comment['id'] = this.state.data.length + 1;
-			this.setState({ data: this.state.data.concat(comment) });
-			// post firebase comments
-		}
-	}, {
-		key: 'handleCommentRemove',
-		value: function handleCommentRemove(commentIndex) {
-			this.setState({ data: this.state.data.splice(commentIndex, 1) });
-		}
-	}, {
-		key: 'listenToFirebaseComments',
-		value: function listenToFirebaseComments() {
-			var _this5 = this;
-
-			this.commentsRef.on('child_added', function (data) {
-				_this5.handleCommentSubmit(data.val());
-			});
-			this.commentsRef.on('child_removed', function (data) {
-				_this5.handleCommentRemove(data.key);
-			});
-		}
-	}, {
-		key: 'getFirebaseComments',
-		value: function getFirebaseComments() {
-			var _this6 = this;
-
-			this.commentsRef.once('value').then(function (snapshot) {
-				var commentsList = snapshot.val();
-				if (commentsList !== null) {
-					_this6.state = { data: commentsList };
-				}
-				console.log(commentsList);
-			});
 		}
 	}, {
 		key: 'render',

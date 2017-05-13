@@ -79,15 +79,15 @@ class CommentForm extends React.Component {
 		this.state = {author: '', text: ''}
 	}
 
-	handleAuthorChange(e) {
+	handleAuthorChange = e => {
 		this.setState({author: e.target.value})
 	}
 
-	handleTextChange(e) {
+	handleTextChange = e => {
 		this.setState({text: e.target.value})
 	}
 
-	handleSubmit(e) {
+	handleSubmit = e => {
 		e.preventDefault()
 		var author = this.state.author.trim(),
 			text = this.state.text.trim()
@@ -142,17 +142,17 @@ class CommentBox extends React.Component {
 		this.getFirebaseComments()
 	}
 
-	handleCommentSubmit(comment) {
+	handleCommentSubmit = comment => {
 		comment['id'] = this.state.data.length + 1
 		this.setState({data: this.state.data.concat(comment)})
 		// post firebase comments
 	}
 
-	handleCommentRemove(commentIndex) {
+	handleCommentRemove = commentIndex => {
 		this.setState({data: this.state.data.splice(commentIndex, 1)})
 	}
 
-	listenToFirebaseComments() {
+	listenToFirebaseComments = () => {
 		this.commentsRef.on('child_added', (data) => {
 			this.handleCommentSubmit(data.val())
 		})
@@ -161,7 +161,7 @@ class CommentBox extends React.Component {
 		})
 	}
 
-	getFirebaseComments() {
+	getFirebaseComments = () => {
 		this.commentsRef.once('value').then((snapshot) => {
 			const commentsList = snapshot.val()
 			if (commentsList !== null) {
