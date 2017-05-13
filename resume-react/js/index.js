@@ -54,7 +54,7 @@ var CommentList = function (_React$Component) {
 			return function (e) {
 				e.preventDefault();
 				_this.props.onCommentDelete(index);
-				commentsRef.update({ index: null });
+				commentsRef.ref('index/').delete();
 			};
 		}, _temp), _possibleConstructorReturn(_this, _ret);
 	}

@@ -52,7 +52,7 @@ class CommentList extends React.Component {
 		return (e) => {
 			e.preventDefault()
 			this.props.onCommentDelete(index)
-			commentsRef.update({index: null})
+			commentsRef.ref('index/').delete()
 		}
 	}
 
