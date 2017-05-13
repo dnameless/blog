@@ -49,7 +49,7 @@ class CommentList extends React.Component {
 
 	deleteComment = index => {
 		return (e) => {
-			this.setState({data: this.state.data.filter((comment) => comment.id !== index)})
+			this.props.onCommentDelete(index)
 		}
 	}
 
@@ -157,8 +157,8 @@ class CommentBox extends React.Component {
 		this.commentsRef.update(updates)
 	}
 	
-	handleCommentHide = comment => {
-		this.setState({data: this.state.data.filter((comment) => comment.id !== index)})
+	handleCommentDelete = index => {
+		this.setState({data: this.state.data.filter((comment) => comment.id != index)})
 	}
 
 	listenToFirebaseComments = () => {
@@ -168,7 +168,7 @@ class CommentBox extends React.Component {
 		})
 		this.commentsRef.on('child_changed', (data) => {
 			const comment = data.val()
-			comment !== null && this.handleCommentHide(comment)
+			comment !== null && this.handleCommentDelete(comment.id)
 		})
 	}
 
@@ -176,8 +176,13 @@ class CommentBox extends React.Component {
 		return (
 			<div className='comment-box'>
 				<h1>Comments</h1>
-				<CommentList data={this.state.data}/>
-				<CommentForm onCommentSubmit={this.handleCommentSubmit}/>
+				<CommentList 
+					data={this.state.data}
+				/>
+				<CommentForm 
+					onCommentSubmit={this.handleCommentSubmit} 
+					onCommentDelete={this.handleCommentDelete} 
+				/>
 			</div>
 		)
 	}
