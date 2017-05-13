@@ -22,18 +22,6 @@ var springPreset = {
 	wobbly: [120, 11]
 };
 
-var timeStamp = function timeStamp() {
-	var options = {
-		month: '2-digit',
-		day: '2-digit',
-		year: '2-digit',
-		hour: '2-digit',
-		minute: '2-digit'
-	};
-	var now = new Date().toLocaleString('en-US', options);
-	return now;
-};
-
 // Components
 
 var CommentList = function (_React$Component) {
@@ -106,7 +94,9 @@ var CommentList = function (_React$Component) {
 					return React.createElement(
 						'div',
 						{ className: 'comment-list' },
-						_this2.props.data.map(function (comment, i) {
+						_this2.props.data.sort(function (a, b) {
+							return new Date(a.datetime) - new Date(b.datetime);
+						}).map(function (comment, i) {
 							var style = _objectWithoutProperties(interp[i + 1], []);
 
 							return React.createElement(
@@ -160,7 +150,7 @@ var CommentForm = function (_React$Component2) {
 			_this3.props.onCommentSubmit({
 				author: author,
 				text: text,
-				datetime: timeStamp()
+				datetime: new Date().toLocaleString('en-US')
 			});
 			_this3.setState({ text: '' });
 		};

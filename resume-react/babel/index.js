@@ -6,18 +6,6 @@ const springPreset = {
 	wobbly: [120,11] 
 }
 
-const timeStamp = () => {
-  let options = {
-    month: '2-digit',
-    day: '2-digit',
-    year: '2-digit',
-    hour: '2-digit',
-    minute:'2-digit'
-  };
-  let now = new Date().toLocaleString('en-US', options);
-  return now;
-};
-
 // Components
 class CommentList extends React.Component {
 	componentDidMount() {
@@ -64,7 +52,9 @@ class CommentList extends React.Component {
 				willLeave={this.willLeave}>
 				{interp =>
 					<div className='comment-list'>
-						{this.props.data.map((comment, i) => {
+						{this.props.data
+							.sort((a, b) => (new Date(a.datetime)) - (new Date(b.datetime)))
+							.map((comment, i) => {
 							const {...style} = interp[i + 1];
 							return (
 								<div className='comment-node' key={i} style={style}>
@@ -107,7 +97,7 @@ class CommentForm extends React.Component {
 		this.props.onCommentSubmit({
 			author: author, 
 			text: text,
-			datetime: timeStamp()
+			datetime: (new Date()).toLocaleString('en-US'),
 		})
 		this.setState({text: ''})
 	}
