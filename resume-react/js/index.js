@@ -202,4 +202,4 @@ var CommentBox = function (_React$Component3) {
 	return CommentBox;
 }(React.Component);
 
-ReactDOM.render(React.createElement(CommentBox, null), document.getElementById('app'));
+ReactDOM.render(React.createElement(CommentBox, null), document.getElementById('react-app'));
