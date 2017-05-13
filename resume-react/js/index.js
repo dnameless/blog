@@ -96,7 +96,7 @@ var CommentList = function (_React$Component) {
 
 							return React.createElement(
 								'div',
-								{ className: 'comment-node', key: comment.id, style: style },
+								{ className: 'comment-node', key: i, style: style },
 								React.createElement(
 									'div',
 									{ className: 'print-author' },
@@ -191,9 +191,11 @@ var CommentBox = function (_React$Component3) {
 		var _this4 = _possibleConstructorReturn(this, (CommentBox.__proto__ || Object.getPrototypeOf(CommentBox)).call(this));
 
 		_this4.handleCommentSubmit = function (comment) {
-			comment['id'] = _this4.state.data.length + 1;
-			_this4.setState({ data: _this4.state.data.concat(comment) });
+			var newId = _this4.state.data.length + 1;
+			comment['id'] = newId;
+			// this.setState({data: this.state.data.concat(comment)})
 			// post firebase comments
+			commentsRef.update({ newId: comment });
 		};
 
 		_this4.handleCommentRemove = function (commentIndex) {
@@ -215,7 +217,6 @@ var CommentBox = function (_React$Component3) {
 				if (commentsList !== null) {
 					_this4.state = { data: commentsList };
 				}
-				console.log(commentsList);
 			});
 		};
 

@@ -58,7 +58,7 @@ class CommentList extends React.Component {
 						{this.props.data.map((comment, i) => {
 							const {...style} = interp[i + 1];
 							return (
-								<div className='comment-node' key={comment.id} style={style}>
+								<div className='comment-node' key={i} style={style}>
 									<div className='print-author'>
 										{`${comment.author} - ${comment.datetime}`}
 									</div> 
@@ -143,9 +143,11 @@ class CommentBox extends React.Component {
 	}
 
 	handleCommentSubmit = comment => {
-		comment['id'] = this.state.data.length + 1
-		this.setState({data: this.state.data.concat(comment)})
+		const newId = this.state.data.length + 1
+		comment['id'] = newId
+		// this.setState({data: this.state.data.concat(comment)})
 		// post firebase comments
+		commentsRef.update({newId: comment})
 	}
 
 	handleCommentRemove = commentIndex => {
@@ -167,7 +169,6 @@ class CommentBox extends React.Component {
 			if (commentsList !== null) {
 				this.state = {data: commentsList}
 			}
-			console.log(commentsList)
 		})
 	}
 
