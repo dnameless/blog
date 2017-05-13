@@ -147,34 +147,24 @@ class CommentBox extends React.Component {
 		let updates = {}
 		comment['id'] = newId
 		updates[newId] = comment
-		// this.setState({data: this.state.data.concat(comment)})
-		// post firebase comments
+		this.setState({data: this.state.data.concat(comment)})
 		this.commentsRef.update(updates)
 	}
 
 	handleCommentRemove = commentIndex => {
-		// const data = Object.assign({}, this.state.data).splice(commentIndex, 1)})
+		let data = Object.assign({}, this.state.data)
+		data = data.splice(commentIndex, 1)
 console.log(this.state.data)
 		this.setState({data: data})
 	}
 
 	listenToFirebaseComments = () => {
 		this.commentsRef.on('child_added', (data) => {
-console.log(data.val())
-			this.handleCommentSubmit(data.val())
+			const comment = data.val()
+			comment !== null && this.handleCommentSubmit(comment)
 		})
 		this.commentsRef.on('child_removed', (data) => {
 			this.handleCommentRemove(data.key)
-		})
-	}
-
-	getFirebaseComments = () => {
-		this.commentsRef.once('value').then((snapshot) => {
-			const commentsList = snapshot.val()
-console.log(commentsList)
-			if (commentsList !== null) {
-				this.state = {data: commentsList}
-			}
 		})
 	}
 

@@ -195,34 +195,24 @@ var CommentBox = function (_React$Component3) {
 			var updates = {};
 			comment['id'] = newId;
 			updates[newId] = comment;
-			// this.setState({data: this.state.data.concat(comment)})
-			// post firebase comments
+			_this4.setState({ data: _this4.state.data.concat(comment) });
 			_this4.commentsRef.update(updates);
 		};
 
 		_this4.handleCommentRemove = function (commentIndex) {
-			// const data = Object.assign({}, this.state.data).splice(commentIndex, 1)})
+			var data = Object.assign({}, _this4.state.data);
+			data = data.splice(commentIndex, 1);
 			console.log(_this4.state.data);
 			_this4.setState({ data: data });
 		};
 
 		_this4.listenToFirebaseComments = function () {
 			_this4.commentsRef.on('child_added', function (data) {
-				console.log(data.val());
-				_this4.handleCommentSubmit(data.val());
+				var comment = data.val();
+				comment !== null && _this4.handleCommentSubmit(comment);
 			});
 			_this4.commentsRef.on('child_removed', function (data) {
 				_this4.handleCommentRemove(data.key);
-			});
-		};
-
-		_this4.getFirebaseComments = function () {
-			_this4.commentsRef.once('value').then(function (snapshot) {
-				var commentsList = snapshot.val();
-				console.log(commentsList);
-				if (commentsList !== null) {
-					_this4.state = { data: commentsList };
-				}
 			});
 		};
 
