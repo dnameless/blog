@@ -144,10 +144,12 @@ class CommentBox extends React.Component {
 
 	handleCommentSubmit = comment => {
 		const newId = this.state.data.length + 1
+		let updates = {}
 		comment['id'] = newId
+		updates[newId] = comment
 		// this.setState({data: this.state.data.concat(comment)})
 		// post firebase comments
-		this.commentsRef.update({newId: comment})
+		this.commentsRef.update(updates)
 	}
 
 	handleCommentRemove = commentIndex => {
@@ -156,6 +158,7 @@ class CommentBox extends React.Component {
 
 	listenToFirebaseComments = () => {
 		this.commentsRef.on('child_added', (data) => {
+			console.log(data.val())
 			this.handleCommentSubmit(data.val())
 		})
 		this.commentsRef.on('child_removed', (data) => {

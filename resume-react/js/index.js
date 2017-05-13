@@ -192,10 +192,12 @@ var CommentBox = function (_React$Component3) {
 
 		_this4.handleCommentSubmit = function (comment) {
 			var newId = _this4.state.data.length + 1;
+			var updates = {};
 			comment['id'] = newId;
+			updates[newId] = comment;
 			// this.setState({data: this.state.data.concat(comment)})
 			// post firebase comments
-			_this4.commentsRef.update({ newId: comment });
+			_this4.commentsRef.update(updates);
 		};
 
 		_this4.handleCommentRemove = function (commentIndex) {
@@ -204,6 +206,7 @@ var CommentBox = function (_React$Component3) {
 
 		_this4.listenToFirebaseComments = function () {
 			_this4.commentsRef.on('child_added', function (data) {
+				console.log(data.val());
 				_this4.handleCommentSubmit(data.val());
 			});
 			_this4.commentsRef.on('child_removed', function (data) {
