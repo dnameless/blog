@@ -219,6 +219,7 @@ var CommentBox = function (_React$Component3) {
 		_this4.getFirebaseComments = function () {
 			_this4.commentsRef.once('value').then(function (snapshot) {
 				var commentsList = snapshot.val();
+				console.log(commentsList);
 				if (commentsList !== null) {
 					_this4.state = { data: commentsList };
 				}

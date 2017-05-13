@@ -171,6 +171,7 @@ console.log(data.val())
 	getFirebaseComments = () => {
 		this.commentsRef.once('value').then((snapshot) => {
 			const commentsList = snapshot.val()
+console.log(commentsList)
 			if (commentsList !== null) {
 				this.state = {data: commentsList}
 			}
