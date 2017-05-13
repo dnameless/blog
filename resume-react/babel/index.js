@@ -49,6 +49,7 @@ class CommentList extends React.Component {
 
 	deleteComment = index => {
 		return (e) => {
+			e.preventDefault()
 			this.props.onCommentDelete(index)
 		}
 	}

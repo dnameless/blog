@@ -51,6 +51,7 @@ var CommentList = function (_React$Component) {
 
 		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CommentList.__proto__ || Object.getPrototypeOf(CommentList)).call.apply(_ref, [this].concat(args))), _this), _this.deleteComment = function (index) {
 			return function (e) {
+				e.preventDefault();
 				_this.props.onCommentDelete(index);
 			};
 		}, _temp), _possibleConstructorReturn(_this, _ret);
