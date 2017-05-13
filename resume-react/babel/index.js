@@ -47,6 +47,10 @@ class CommentList extends React.Component {
 		}
 	}
 
+	deleteComment = e => {
+		console.log(e.currentTarget)
+	}
+
 	render() {
 		return (
 			<TransitionMotion
@@ -61,6 +65,7 @@ class CommentList extends React.Component {
 								<div className='comment-node' key={i} style={style}>
 									<div className='print-author'>
 										{`${comment.author} - ${comment.datetime}`}
+										<div onClick={this.deleteComment} className="delete-comment">Delete</div>
 									</div> 
 									{comment.text}
 								</div>
@@ -149,11 +154,11 @@ class CommentBox extends React.Component {
 		this.setState({data: this.state.data.concat(comment)})
 		this.commentsRef.update(updates)
 	}
-
-	handleCommentRemove = commentIndex => {
+	
+	handleCommentHide = comment => {
 		let data = Object.assign({}, this.state.data)
-		data = data.splice(commentIndex, 1)
-console.log(this.state.data)
+		comment.isHidden = true
+		data[comment.id] = comment
 		this.setState({data: data})
 	}
 
@@ -162,8 +167,9 @@ console.log(this.state.data)
 			const comment = data.val()
 			comment !== null && this.handleCommentSubmit(comment)
 		})
-		this.commentsRef.on('child_removed', (data) => {
-			this.handleCommentRemove(data.key)
+		this.commentsRef.on('child_changed', (data) => {
+			const comment = data.val()
+			comment !== null && this.handleCommentHide(comment)
 		})
 	}
 

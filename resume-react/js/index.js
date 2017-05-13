@@ -39,9 +39,19 @@ var CommentList = function (_React$Component) {
 	_inherits(CommentList, _React$Component);
 
 	function CommentList() {
+		var _ref;
+
+		var _temp, _this, _ret;
+
 		_classCallCheck(this, CommentList);
 
-		return _possibleConstructorReturn(this, (CommentList.__proto__ || Object.getPrototypeOf(CommentList)).apply(this, arguments));
+		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+			args[_key] = arguments[_key];
+		}
+
+		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CommentList.__proto__ || Object.getPrototypeOf(CommentList)).call.apply(_ref, [this].concat(args))), _this), _this.deleteComment = function (e) {
+			console.log(e.currentTarget);
+		}, _temp), _possibleConstructorReturn(_this, _ret);
 	}
 
 	_createClass(CommentList, [{
@@ -100,7 +110,12 @@ var CommentList = function (_React$Component) {
 								React.createElement(
 									'div',
 									{ className: 'print-author' },
-									comment.author + ' - ' + comment.datetime
+									comment.author + ' - ' + comment.datetime,
+									React.createElement(
+										'div',
+										{ onPress: _this2.deleteComment, className: 'delete-comment' },
+										'Delete'
+									)
 								),
 								comment.text
 							);
@@ -199,10 +214,10 @@ var CommentBox = function (_React$Component3) {
 			_this4.commentsRef.update(updates);
 		};
 
-		_this4.handleCommentRemove = function (commentIndex) {
+		_this4.handleCommentHide = function (comment) {
 			var data = Object.assign({}, _this4.state.data);
-			data = data.splice(commentIndex, 1);
-			console.log(_this4.state.data);
+			comment.isHidden = true;
+			data[comment.id] = comment;
 			_this4.setState({ data: data });
 		};
 
@@ -211,8 +226,9 @@ var CommentBox = function (_React$Component3) {
 				var comment = data.val();
 				comment !== null && _this4.handleCommentSubmit(comment);
 			});
-			_this4.commentsRef.on('child_removed', function (data) {
-				_this4.handleCommentRemove(data.key);
+			_this4.commentsRef.on('child_changed', function (data) {
+				var comment = data.val();
+				comment !== null && _this4.handleCommentHide(comment);
 			});
 		};
 
