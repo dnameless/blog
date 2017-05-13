@@ -49,8 +49,12 @@ var CommentList = function (_React$Component) {
 			args[_key] = arguments[_key];
 		}
 
-		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CommentList.__proto__ || Object.getPrototypeOf(CommentList)).call.apply(_ref, [this].concat(args))), _this), _this.deleteComment = function (e) {
-			console.log(e.currentTarget);
+		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CommentList.__proto__ || Object.getPrototypeOf(CommentList)).call.apply(_ref, [this].concat(args))), _this), _this.deleteComment = function (i) {
+			return function (e) {
+				var data = Object.assign({}, _this.state.data);
+				data.splice(i, 1);
+				_this.setState({ data: data });
+			};
 		}, _temp), _possibleConstructorReturn(_this, _ret);
 	}
 
@@ -112,8 +116,8 @@ var CommentList = function (_React$Component) {
 									{ className: 'print-author' },
 									comment.author + ' - ' + comment.datetime,
 									React.createElement(
-										'div',
-										{ onClick: _this2.deleteComment, className: 'delete-comment' },
+										'span',
+										{ onClick: _this2.deleteComment(i), className: 'delete-comment' },
 										'Delete'
 									)
 								),
@@ -216,8 +220,7 @@ var CommentBox = function (_React$Component3) {
 
 		_this4.handleCommentHide = function (comment) {
 			var data = Object.assign({}, _this4.state.data);
-			comment.isHidden = true;
-			data[comment.id] = comment;
+			data.splice(comment.id, 1);
 			_this4.setState({ data: data });
 		};
 

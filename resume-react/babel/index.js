@@ -47,8 +47,12 @@ class CommentList extends React.Component {
 		}
 	}
 
-	deleteComment = e => {
-		console.log(e.currentTarget)
+	deleteComment = i => {
+		return (e) => {
+			let data = Object.assign({}, this.state.data)
+			data.splice(i, 1)
+			this.setState({data: data})
+		}
 	}
 
 	render() {
@@ -65,7 +69,7 @@ class CommentList extends React.Component {
 								<div className='comment-node' key={i} style={style}>
 									<div className='print-author'>
 										{`${comment.author} - ${comment.datetime}`}
-										<div onClick={this.deleteComment} className="delete-comment">Delete</div>
+										<span onClick={this.deleteComment(i)} className="delete-comment">Delete</span>
 									</div> 
 									{comment.text}
 								</div>
@@ -157,8 +161,7 @@ class CommentBox extends React.Component {
 	
 	handleCommentHide = comment => {
 		let data = Object.assign({}, this.state.data)
-		comment.isHidden = true
-		data[comment.id] = comment
+		data.splice(comment.id, 1)
 		this.setState({data: data})
 	}
 
