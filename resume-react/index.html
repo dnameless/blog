@@ -11,7 +11,8 @@
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
-
+  <!-- Application CSS -->
+  <link rel="stylesheet" href="css/app.css">
 
 
 
@@ -76,6 +77,31 @@
     motion: true
   };
 </script>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+<!-- <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script> -->
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCfVu0nJRCois3aOq6EjZU7R_59Uv-JRCE",
+    authDomain: "blog-comments-6f28c.firebaseapp.com",
+    databaseURL: "https://blog-comments-6f28c.firebaseio.com",
+    projectId: "blog-comments-6f28c",
+    storageBucket: "blog-comments-6f28c.appspot.com",
+    messagingSenderId: "745788686336"
+  };
+  firebase.initializeApp(config);
+  defaultStorage = firebase.storage();
+  defaultDatabase = firebase.database();
+</script>
+
+<!-- React -->
+<script src="https://fb.me/react-15.3.0.min.js"></script>
+<script src="https://fb.me/react-dom-15.3.0.min.js"></script>
+
+<!-- ReactFire -->
+<script src="https://cdn.firebase.com/libs/reactfire/1.0.0/reactfire.min.js"></script>
 
   <title>
   
@@ -215,7 +241,7 @@
     
     
       <!-- TEMPLATE -->
-<p><div id="resume"><br>  <img src="https://avatars1.githubusercontent.com/u/13071508?v=3&amp;s=360" alt="Leon Mak"><br>  <h1>Leon Mak</h1><br>  <p>HP: +65 8268 5621<br>  </p><p>Web: <a href="http://leonmak.me" target="_blank" rel="external">leonmak.me</a><br>  </p><p>Github: <a href="https://github.com/leonmak" target="_blank" rel="external">github.com/leonmak</a><br>  </p><p>Skype: <a href="mailto:leonmakansheng@gmail.com" target="_blank" rel="external">leonmakansheng@gmail.com</a><br>  </p><p>Email: <a href="mailto:leon.mak@u.nus.edu" target="_blank" rel="external">leon.mak@u.nus.edu</a><br>  </p><p id="objective">Hi! I am a full stack web developer who started out in front end web development. I enjoy developing apps on IOS and also like tinkering with new technologies in my spare time. </p>
+<p><div id="resume"><br>  <img src="https://avatars1.githubusercontent.com/u/13071508?v=3&amp;s=360" alt="Leon Mak"><br>  <h1>Leon Mak</h1><br>  <p>HP: <a href="#">+65 8268 5621</a><br>  </p><p>Web: <a href="http://leonmak.me" target="_blank" rel="external">leonmak.me</a><br>  </p><p>Github: <a href="https://github.com/leonmak" target="_blank" rel="external">github.com/leonmak</a><br>  </p><p>Skype: <a href="mailto:leonmakansheng@gmail.com" target="_blank" rel="external">leonmakansheng@gmail.com</a><br>  </p><p>Email: <a href="mailto:leon.mak@u.nus.edu" target="_blank" rel="external">leon.mak@u.nus.edu</a><br>  </p><p id="objective">Hi! I am a full stack web developer who started out in front end web development. I enjoy developing apps on IOS and also like tinkering with new technologies in my spare time. </p>
 <p><br></p>
 <dl>
   <dt>Education
@@ -472,7 +498,7 @@ div#resume img {
 
         
 
-
+<div id="app"></div>
         
   <div class="comments" id="comments">
     
@@ -660,10 +686,14 @@ div#resume img {
   <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
-  
+  <!-- ReactMotion -->
+  <script src='https://cdn.rawgit.com/chenglou/react-motion/v0.3.1/build/react-motion.js'></script>
 
-  
-  
+  <!-- Jquery -->
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+  <!-- Application JS -->
+  <script src="js/index.js"></script>
 
 </body>
 </html>
