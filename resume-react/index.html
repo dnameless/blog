@@ -78,22 +78,28 @@
   };
 </script>
 
-<!-- FIREBASE -->
-<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyCfVu0nJRCois3aOq6EjZU7R_59Uv-JRCE",
-    authDomain: "blog-comments-6f28c.firebaseapp.com",
-    databaseURL: "https://blog-comments-6f28c.firebaseio.com",
-    projectId: "blog-comments-6f28c",
-    storageBucket: "blog-comments-6f28c.appspot.com",
-    messagingSenderId: "745788686336"
-  };
-  firebase.initializeApp(config);
-  defaultStorage = firebase.storage();
-  defaultDatabase = firebase.database();
-</script>
+  <!-- FIREBASE -->
+  <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCfVu0nJRCois3aOq6EjZU7R_59Uv-JRCE",
+      authDomain: "blog-comments-6f28c.firebaseapp.com",
+      databaseURL: "https://blog-comments-6f28c.firebaseio.com",
+      projectId: "blog-comments-6f28c",
+      storageBucket: "blog-comments-6f28c.appspot.com",
+      messagingSenderId: "745788686336"
+    };
+    firebase.initializeApp(config);
+    defaultStorage = firebase.storage();
+    defaultDatabase = firebase.database();
+  </script>
+  
+  <!-- React -->
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react.min.js'></script>
+
+  <!-- ReactMotion -->
+  <script src='https://cdn.rawgit.com/chenglou/react-motion/v0.3.1/build/react-motion.js'></script>
 
 <title>
   
@@ -625,11 +631,6 @@ div#resume img {
 
   <script type="text/javascript" src="/js/bootstrap.js"></script>
   
-  <!-- React -->
-  <script src='http://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react.min.js'></script>
-
-  <!-- ReactMotion -->
-  <script src='https://cdn.rawgit.com/chenglou/react-motion/v0.3.1/build/react-motion.js'></script>
 
   <!-- Application JS -->
   <script src="./js/index.js" type="text/babel"></script>
