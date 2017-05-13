@@ -139,7 +139,6 @@ class CommentBox extends React.Component {
 
 	componentDidMount() {
 		this.listenToFirebaseComments()
-		this.getFirebaseComments()
 	}
 
 	handleCommentSubmit = comment => {

@@ -225,7 +225,6 @@ var CommentBox = function (_React$Component3) {
 		key: 'componentDidMount',
 		value: function componentDidMount() {
 			this.listenToFirebaseComments();
-			this.getFirebaseComments();
 		}
 	}, {
 		key: 'render',
