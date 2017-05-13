@@ -138,6 +138,7 @@ class CommentBox extends React.Component {
 
 	componentDidMount() {
 		this.listenToFirebaseComments()
+		this.getFirebaseComments()
 	}
 
 	handleCommentSubmit(comment) {
@@ -151,9 +152,14 @@ class CommentBox extends React.Component {
 		commentsRef.on('child_added', (snapshot) => {
 			handleCommentSubmit(snapshot.val())
 		})
+	}
+
+	getFirebaseComments() {
 		commentsRef.once('value').then((snapshot) => {
 			const commentsList = snapshot.val()
-			this.state = {data: commentsList}
+			if (commentsList !== null) {
+				this.state = {data: commentsList}
+			}
 			console.log(commentsList)
 		})
 	}

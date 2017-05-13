@@ -201,6 +201,7 @@ var CommentBox = function (_React$Component3) {
 		key: 'componentDidMount',
 		value: function componentDidMount() {
 			this.listenToFirebaseComments();
+			this.getFirebaseComments();
 		}
 	}, {
 		key: 'handleCommentSubmit',
@@ -212,15 +213,21 @@ var CommentBox = function (_React$Component3) {
 	}, {
 		key: 'listenToFirebaseComments',
 		value: function listenToFirebaseComments() {
-			var _this5 = this;
-
 			var commentsRef = defaultDatabase.ref('comments/');
 			commentsRef.on('child_added', function (snapshot) {
 				handleCommentSubmit(snapshot.val());
 			});
+		}
+	}, {
+		key: 'getFirebaseComments',
+		value: function getFirebaseComments() {
+			var _this5 = this;
+
 			commentsRef.once('value').then(function (snapshot) {
 				var commentsList = snapshot.val();
-				_this5.state = { data: commentsList };
+				if (commentsList !== null) {
+					_this5.state = { data: commentsList };
+				}
 				console.log(commentsList);
 			});
 		}
