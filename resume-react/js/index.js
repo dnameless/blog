@@ -255,11 +255,11 @@ var CommentBox = function (_React$Component3) {
 					'Comments'
 				),
 				React.createElement(CommentList, {
-					data: this.state.data
+					data: this.state.data,
+					onCommentDelete: this.handleCommentDelete
 				}),
 				React.createElement(CommentForm, {
-					onCommentSubmit: this.handleCommentSubmit,
-					onCommentDelete: this.handleCommentDelete
+					onCommentSubmit: this.handleCommentSubmit
 				})
 			);
 		}
