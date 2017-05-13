@@ -54,7 +54,7 @@ var CommentList = function (_React$Component) {
 			return function (e) {
 				e.preventDefault();
 				_this.props.onCommentDelete(index);
-				commentsRef.ref('index/').remove();
+				commentsRef.ref(index + '/').remove();
 			};
 		}, _temp), _possibleConstructorReturn(_this, _ret);
 	}
@@ -219,10 +219,11 @@ var CommentBox = function (_React$Component3) {
 			commentsRef.update(updates);
 		};
 
-		_this4.handleCommentDelete = function (index) {
+		_this4.handleCommentDelete = function (id) {
 			_this4.setState({ data: _this4.state.data.filter(function (comment) {
-					return comment.id != index;
+					return comment.id != id;
 				}) });
+			commentsRef.ref('/' + id).remove();
 		};
 
 		_this4.listenToFirebaseComments = function () {
