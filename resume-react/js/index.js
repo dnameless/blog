@@ -214,19 +214,21 @@ var CommentBox = function (_React$Component3) {
 	}, {
 		key: 'listenToFirebaseComments',
 		value: function listenToFirebaseComments() {
+			var _this5 = this;
+
 			this.commentsRef.on('child_added', function (snapshot) {
-				handleCommentSubmit(snapshot.val());
+				_this5.handleCommentSubmit(snapshot.val());
 			});
 		}
 	}, {
 		key: 'getFirebaseComments',
 		value: function getFirebaseComments() {
-			var _this5 = this;
+			var _this6 = this;
 
 			this.commentsRef.once('value').then(function (snapshot) {
 				var commentsList = snapshot.val();
 				if (commentsList !== null) {
-					_this5.state = { data: commentsList };
+					_this6.state = { data: commentsList };
 				}
 				console.log(commentsList);
 			});

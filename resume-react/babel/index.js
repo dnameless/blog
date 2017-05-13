@@ -150,7 +150,7 @@ class CommentBox extends React.Component {
 
 	listenToFirebaseComments() {
 		this.commentsRef.on('child_added', (snapshot) => {
-			handleCommentSubmit(snapshot.val())
+			this.handleCommentSubmit(snapshot.val())
 		})
 	}
 
