@@ -47,11 +47,9 @@ class CommentList extends React.Component {
 		}
 	}
 
-	deleteComment = i => {
+	deleteComment = index => {
 		return (e) => {
-			let data = Object.assign({}, this.state.data)
-			data.splice(i, 1)
-			this.setState({data: data})
+			this.setState({data: this.state.data.filter((comment) => comment.id !== index)})
 		}
 	}
 
@@ -160,9 +158,7 @@ class CommentBox extends React.Component {
 	}
 	
 	handleCommentHide = comment => {
-		let data = Object.assign({}, this.state.data)
-		data.splice(comment.id, 1)
-		this.setState({data: data})
+		this.setState({data: this.state.data.filter((comment) => comment.id !== index)})
 	}
 
 	listenToFirebaseComments = () => {

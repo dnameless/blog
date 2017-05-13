@@ -49,11 +49,11 @@ var CommentList = function (_React$Component) {
 			args[_key] = arguments[_key];
 		}
 
-		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CommentList.__proto__ || Object.getPrototypeOf(CommentList)).call.apply(_ref, [this].concat(args))), _this), _this.deleteComment = function (i) {
+		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CommentList.__proto__ || Object.getPrototypeOf(CommentList)).call.apply(_ref, [this].concat(args))), _this), _this.deleteComment = function (index) {
 			return function (e) {
-				var data = Object.assign({}, _this.state.data);
-				data.splice(i, 1);
-				_this.setState({ data: data });
+				_this.setState({ data: _this.state.data.filter(function (comment) {
+						return comment.id !== index;
+					}) });
 			};
 		}, _temp), _possibleConstructorReturn(_this, _ret);
 	}
@@ -219,9 +219,9 @@ var CommentBox = function (_React$Component3) {
 		};
 
 		_this4.handleCommentHide = function (comment) {
-			var data = Object.assign({}, _this4.state.data);
-			data.splice(comment.id, 1);
-			_this4.setState({ data: data });
+			_this4.setState({ data: _this4.state.data.filter(function (comment) {
+					return comment.id !== index;
+				}) });
 		};
 
 		_this4.listenToFirebaseComments = function () {
