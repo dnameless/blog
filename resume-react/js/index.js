@@ -194,6 +194,7 @@ var CommentBox = function (_React$Component3) {
 		var _this4 = _possibleConstructorReturn(this, (CommentBox.__proto__ || Object.getPrototypeOf(CommentBox)).call(this));
 
 		_this4.state = { data: [] };
+		_this4.commentsRef = defaultDatabase.ref('comments/');
 		return _this4;
 	}
 
@@ -213,8 +214,7 @@ var CommentBox = function (_React$Component3) {
 	}, {
 		key: 'listenToFirebaseComments',
 		value: function listenToFirebaseComments() {
-			var commentsRef = defaultDatabase.ref('comments/');
-			commentsRef.on('child_added', function (snapshot) {
+			this.commentsRef.on('child_added', function (snapshot) {
 				handleCommentSubmit(snapshot.val());
 			});
 		}
@@ -223,7 +223,7 @@ var CommentBox = function (_React$Component3) {
 		value: function getFirebaseComments() {
 			var _this5 = this;
 
-			commentsRef.once('value').then(function (snapshot) {
+			this.commentsRef.once('value').then(function (snapshot) {
 				var commentsList = snapshot.val();
 				if (commentsList !== null) {
 					_this5.state = { data: commentsList };

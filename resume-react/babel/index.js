@@ -134,6 +134,7 @@ class CommentBox extends React.Component {
 	constructor() {
 		super()
 		this.state = {data: []}
+		this.commentsRef = defaultDatabase.ref('comments/')
 	}
 
 	componentDidMount() {
@@ -148,14 +149,13 @@ class CommentBox extends React.Component {
 	}
 
 	listenToFirebaseComments() {
-		const commentsRef = defaultDatabase.ref('comments/')
-		commentsRef.on('child_added', (snapshot) => {
+		this.commentsRef.on('child_added', (snapshot) => {
 			handleCommentSubmit(snapshot.val())
 		})
 	}
 
 	getFirebaseComments() {
-		commentsRef.once('value').then((snapshot) => {
+		this.commentsRef.once('value').then((snapshot) => {
 			const commentsList = snapshot.val()
 			if (commentsList !== null) {
 				this.state = {data: commentsList}
