@@ -60,7 +60,7 @@ class CommentList extends React.Component {
 							return (
 								<div className='comment-node' key={comment.id} style={style}>
 									<div className='print-author'>
-										{comment.author + ' - ' comment.datetime}
+										{`${comment.author} - ${comment.datetime}`}
 									</div> 
 									{comment.text}
 								</div>

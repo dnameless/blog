@@ -15,12 +15,25 @@ var _ReactMotion = ReactMotion,
     spring = _ReactMotion.spring,
     TransitionMotion = _ReactMotion.TransitionMotion;
 
-
-var commentData = [{ author: 'Waympus Loonger', text: 'look at this comment!' }, { author: 'Donderk Sept', text: 'No, this comment is more interesting!' }, { author: 'Lentfop Abdus', text: 'I can say a thing here?' }, { author: 'Stenin Bumk', text: 'Why is wall though?' }, { author: 'Stenin Bumk', text: 'Waldo*' }, { author: 'Hastov Lennonbrook', text: 'H- How did a typo of Waldo turn into wall though???' }, { author: 'Lentfop Abdus', text: '^ this guy' }, { author: 'Stenin Bumk', text: 'It sounds similar!' }, { author: 'Henchtop X. Splathurdin', text: 'y\'all are freaky.' }, { author: 'Snecknope Antlebee', text: 'Guys guys guys!' }, { author: 'Lentfop Abdus', text: 'Jeez what?' }, { author: 'Snecknope Antlebee', text: 'so they say comedy is observation plus time, right?' }, { author: 'xXx_Ethan_xXx', text: 'I\'ll bite.' }, { author: 'xXx_Ethan_xXx', text: 'Yeah that\'s what they say...' }, { author: 'Snecknope Antlebee', text: 'Yeah, but then I got to thinking. Jerry Sienfeld showed us that observation is also comedy!' }, { author: 'Jaymus Flabbergasser', text: 'SEVENTEEN!!!!' }, { author: 'Snecknope Antlebee', text: 'It\'s basic algebra.' }, { author: 'Snecknope Antlebee', text: 'tragedy + time = comedy' }, { author: 'Snecknope Antlebee', text: 'observations = comedy' }, { author: 'Snecknope Antlebee', text: 'thus!!! tragedy = observation - time' }, { author: 'Snecknope Antlebee', text: 'in lame-man-speak timeless observation is equal to tragedy' }];
+// Helpers
 
 var springPreset = {
 	wobbly: [120, 11]
 };
+
+var timeStamp = function timeStamp() {
+	var options = {
+		month: '2-digit',
+		day: '2-digit',
+		year: '2-digit',
+		hour: '2-digit',
+		minute: '2-digit'
+	};
+	var now = new Date().toLocaleString('en-US', options);
+	return now;
+};
+
+// Components
 
 var CommentList = function (_React$Component) {
 	_inherits(CommentList, _React$Component);
@@ -41,7 +54,6 @@ var CommentList = function (_React$Component) {
 		value: function componentDidUpdate() {
 			var comHeight = this.comDisplay.outerHeight();
 			var comScroll = this.comDisplay[0].scrollHeight;
-
 			this.comDisplay.stop().animate({ 'scrollTop': comScroll - comHeight }, 200);
 		}
 	}, {
@@ -84,11 +96,11 @@ var CommentList = function (_React$Component) {
 
 							return React.createElement(
 								'div',
-								{ className: 'comment-node', author: comment.author, key: comment.id, style: style },
+								{ className: 'comment-node', key: comment.id, style: style },
 								React.createElement(
 									'div',
 									{ className: 'print-author' },
-									comment.author + ' - '
+									comment.author + ' - ' + comment.datetime
 								),
 								comment.text
 							);
@@ -110,30 +122,37 @@ var CommentForm = function (_React$Component2) {
 
 		var _this3 = _possibleConstructorReturn(this, (CommentForm.__proto__ || Object.getPrototypeOf(CommentForm)).call(this));
 
-		_this3.handleAuthorChange = function (e) {
-			_this3.setState({ author: e.target.value });
-		};
-
-		_this3.handleTextChange = function (e) {
-			_this3.setState({ text: e.target.value });
-		};
-
-		_this3.handleSubmit = function (e) {
-			e.preventDefault();
-			var author = _this3.state.author.trim(),
-			    text = _this3.state.text.trim();
-			if (!text || !author) {
-				return;
-			}
-			_this3.props.onCommentSubmit({ author: author, text: text });
-			_this3.setState({ text: '' });
-		};
-
 		_this3.state = { author: '', text: '', canPost: 'disabled' };
 		return _this3;
 	}
 
 	_createClass(CommentForm, [{
+		key: 'handleAuthorChange',
+		value: function handleAuthorChange(e) {
+			this.setState({ author: e.target.value });
+		}
+	}, {
+		key: 'handleTextChange',
+		value: function handleTextChange(e) {
+			this.setState({ text: e.target.value });
+		}
+	}, {
+		key: 'handleSubmit',
+		value: function handleSubmit(e) {
+			e.preventDefault();
+			var author = this.state.author.trim(),
+			    text = this.state.text.trim();
+			if (!text || !author) {
+				return;
+			}
+			this.props.onCommentSubmit({
+				author: author,
+				text: text,
+				datetime: timeStamp()
+			});
+			this.setState({ text: '' });
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			return React.createElement(
@@ -166,8 +185,6 @@ var CommentForm = function (_React$Component2) {
 	return CommentForm;
 }(React.Component);
 
-;
-
 var CommentBox = function (_React$Component3) {
 	_inherits(CommentBox, _React$Component3);
 
@@ -176,20 +193,6 @@ var CommentBox = function (_React$Component3) {
 
 		var _this4 = _possibleConstructorReturn(this, (CommentBox.__proto__ || Object.getPrototypeOf(CommentBox)).call(this));
 
-		_this4.handleCommentSubmit = function (comment) {
-			comment['id'] = _this4.state.data.length + 1;
-			_this4.setState({ data: _this4.state.data.concat(comment) });
-		};
-
-		_this4.addRandomComment = function () {
-			_this4.handleCommentSubmit(commentData[0]);
-			commentData.splice(0, 1);
-			if (commentData.length > 0) {
-				var cTime = Math.random() * 7000 + 500;
-				setTimeout(_this4.addRandomComment, cTime);
-			}
-		};
-
 		_this4.state = { data: [] };
 		return _this4;
 	}
@@ -197,7 +200,24 @@ var CommentBox = function (_React$Component3) {
 	_createClass(CommentBox, [{
 		key: 'componentDidMount',
 		value: function componentDidMount() {
-			this.addRandomComment();
+			this.listenToFirebaseComments();
+		}
+	}, {
+		key: 'handleCommentSubmit',
+		value: function handleCommentSubmit(comment) {
+			comment['id'] = this.state.data.length + 1;
+			this.setState({ data: this.state.data.concat(comment) });
+			// post firebase comments
+		}
+	}, {
+		key: 'listenToFirebaseComments',
+		value: function listenToFirebaseComments() {
+			var _this5 = this;
+
+			var commentsRef = defaultDatabase.ref('/comments');
+			defaultDatabase.on('value', function (snapshot) {
+				_this5.state = { data: snapshot.val() };
+			});
 		}
 	}, {
 		key: 'render',
