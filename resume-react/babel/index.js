@@ -166,7 +166,7 @@ class CommentBox extends React.Component {
 	listenToFirebaseComments = () => {
 		commentsRef.on('child_added', (data) => {
 			const comment = data.val()
-			comment !== null && this.handleCommentSubmit(comment)
+			comment !== null && this.setState({data: this.state.data.concat(comment)})
 		})
 		commentsRef.on('child_changed', (data) => {
 			const comment = data.val()

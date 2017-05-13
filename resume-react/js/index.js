@@ -228,7 +228,7 @@ var CommentBox = function (_React$Component3) {
 		_this4.listenToFirebaseComments = function () {
 			commentsRef.on('child_added', function (data) {
 				var comment = data.val();
-				comment !== null && _this4.handleCommentSubmit(comment);
+				comment !== null && _this4.setState({ data: _this4.state.data.concat(comment) });
 			});
 			commentsRef.on('child_changed', function (data) {
 				var comment = data.val();
