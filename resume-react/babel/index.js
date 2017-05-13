@@ -153,12 +153,14 @@ class CommentBox extends React.Component {
 	}
 
 	handleCommentRemove = commentIndex => {
-		this.setState({data: this.state.data.splice(commentIndex, 1)})
+		// const data = Object.assign({}, this.state.data).splice(commentIndex, 1)})
+console.log(this.state.data)
+		this.setState({data: data})
 	}
 
 	listenToFirebaseComments = () => {
 		this.commentsRef.on('child_added', (data) => {
-			console.log(data.val())
+console.log(data.val())
 			this.handleCommentSubmit(data.val())
 		})
 		this.commentsRef.on('child_removed', (data) => {

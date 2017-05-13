@@ -201,7 +201,9 @@ var CommentBox = function (_React$Component3) {
 		};
 
 		_this4.handleCommentRemove = function (commentIndex) {
-			_this4.setState({ data: _this4.state.data.splice(commentIndex, 1) });
+			// const data = Object.assign({}, this.state.data).splice(commentIndex, 1)})
+			console.log(_this4.state.data);
+			_this4.setState({ data: data });
 		};
 
 		_this4.listenToFirebaseComments = function () {
