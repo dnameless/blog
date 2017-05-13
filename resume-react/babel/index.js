@@ -151,7 +151,7 @@ class CommentBox extends React.Component {
 	}
 
 	handleCommentSubmit = comment => {
-		const newId = `${comment.datetime}${this.state.data.length + 1}`
+		const newId = `${this.state.data.length + 1}`
 		let updates = {}
 		comment['id'] = newId
 		updates[newId] = comment

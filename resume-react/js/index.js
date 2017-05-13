@@ -211,7 +211,7 @@ var CommentBox = function (_React$Component3) {
 		var _this4 = _possibleConstructorReturn(this, (CommentBox.__proto__ || Object.getPrototypeOf(CommentBox)).call(this));
 
 		_this4.handleCommentSubmit = function (comment) {
-			var newId = '' + comment.datetime + (_this4.state.data.length + 1);
+			var newId = '' + (_this4.state.data.length + 1);
 			var updates = {};
 			comment['id'] = newId;
 			updates[newId] = comment;
