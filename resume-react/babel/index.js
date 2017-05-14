@@ -151,7 +151,7 @@ class CommentBox extends React.Component {
 	
 	handleCommentDelete = id => {
 		this.setState({data: this.state.data.filter((comment) => comment.id != id)})
-		commentsRef.ref(`/${id}`).remove()
+		commentsRef.ref(`${id}/`).remove()
 	}
 
 	listenToFirebaseComments = () => {

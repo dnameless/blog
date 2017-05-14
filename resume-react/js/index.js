@@ -213,7 +213,7 @@ var CommentBox = function (_React$Component3) {
 			_this4.setState({ data: _this4.state.data.filter(function (comment) {
 					return comment.id != id;
 				}) });
-			commentsRef.ref('/' + id).remove();
+			commentsRef.ref(id + '/').remove();
 		};
 
 		_this4.listenToFirebaseComments = function () {
