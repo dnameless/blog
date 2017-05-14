@@ -40,7 +40,7 @@ class CommentList extends React.Component {
 		return (e) => {
 			e.preventDefault()
 			this.props.onCommentDelete(index)
-			commentsRef.ref(`${index}/`).remove()
+			defaultDatabase.ref(`comments/${index}/`).remove()
 		}
 	}
 
@@ -149,9 +149,9 @@ class CommentBox extends React.Component {
 		commentsRef.update(updates)
 	}
 	
-	handleCommentDelete = id => {
-		this.setState({data: this.state.data.filter((comment) => comment.id != id)})
-		commentsRef.ref(`${id}/`).remove()
+	handleCommentDelete = index => {
+		this.setState({data: this.state.data.filter((comment) => comment.id != index)})
+		defaultDatabase.ref(`comments/${index}/`).remove()
 	}
 
 	listenToFirebaseComments = () => {
