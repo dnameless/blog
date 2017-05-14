@@ -221,7 +221,7 @@ var CommentBox = function (_React$Component3) {
 				var comment = data.val();
 				comment !== null && _this4.setState({ data: _this4.state.data.concat(comment) });
 			});
-			commentsRef.on('child_changed', function (data) {
+			commentsRef.on('child_removed', function (data) {
 				var comment = data.val();
 				comment !== null && _this4.handleCommentDelete(comment.id);
 			});

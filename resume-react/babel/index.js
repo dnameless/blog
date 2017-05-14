@@ -159,7 +159,7 @@ class CommentBox extends React.Component {
 			const comment = data.val()
 			comment !== null && this.setState({data: this.state.data.concat(comment)})
 		})
-		commentsRef.on('child_changed', (data) => {
+		commentsRef.on('child_removed', (data) => {
 			const comment = data.val()
 			comment !== null && this.handleCommentDelete(comment.id)
 		})
