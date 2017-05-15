@@ -99,20 +99,30 @@ var CommentList = function (_React$Component) {
 						}).map(function (comment, i) {
 							var style = _objectWithoutProperties(interp[i + 1], []);
 
+							var user = firebase.auth().currentUser;
 							return React.createElement(
 								'div',
 								{ className: 'comment-node', key: i, style: style },
-								React.createElement(
+								comment.photoURL && React.createElement(
 									'div',
-									{ className: 'print-author' },
-									comment.author + ' - ' + comment.datetime
+									{ className: 'photo' },
+									React.createElement('img', { src: comment.photoURL })
 								),
-								React.createElement(
+								comment.userId && user && comment.userId == user.uid && React.createElement(
 									'div',
 									{ onClick: _this2.deleteComment(comment.id), className: 'delete-comment' },
 									'Delete'
 								),
-								comment.text
+								React.createElement(
+									'div',
+									{ className: 'comment-text' },
+									React.createElement(
+										'div',
+										{ className: 'author' },
+										comment.author + ' - ' + comment.datetime
+									),
+									comment.text
+								)
 							);
 						})
 					);
@@ -143,16 +153,58 @@ var CommentForm = function (_React$Component2) {
 		_this3.handleSubmit = function (e) {
 			e.preventDefault();
 			var author = _this3.state.author.trim(),
-			    text = _this3.state.text.trim();
+			    text = _this3.state.text.trim(),
+			    user = firebase.auth().currentUser;
 			if (!text || !author) {
 				return;
 			}
 			_this3.props.onCommentSubmit({
-				author: author,
+				author: user ? user.displayName : author,
 				text: text,
-				datetime: new Date().toLocaleString('en-US')
+				datetime: new Date().toLocaleString('en-US'),
+				photoURL: user ? user.photoURL : false,
+				userId: user ? user.uid : false
 			});
 			_this3.setState({ text: '' });
+		};
+
+		_this3.socialSignIn = function (loginMethod) {
+			return function () {
+				var provider = void 0;
+				switch (loginMethod) {
+					case "facebook":
+						provider = new firebase.auth.FacebookAuthProvider();
+						break;
+					case "twitter":
+						provider = new firebase.auth.TwitterAuthProvider();
+						break;
+					case "google":
+						provider = new firebase.auth.GoogleAuthProvider();
+						break;
+				}
+				if (!provider) {
+					console.log("No valid external login method given.");
+					return;
+				}
+				firebase.auth().signInWithPopup(provider).then(function (result) {
+					_this3.user = result.user;
+					_this3.setState({ author: _this3.user.displayName });
+					_this3.props.refreshData();
+				}).catch(function (error) {
+					console.log(error);
+				});
+			};
+		};
+
+		_this3.socialSignOut = function () {
+			firebase.auth().signOut().then(function () {
+				console.log("Logged out successfully");
+				_this3.props.refreshData();
+				_this3.user = firebase.auth().currentUser;
+				_this3.setState({ author: '' });
+			}).catch(function (error) {
+				return console.log(error);
+			});
 		};
 
 		_this3.state = { author: '', text: '' };
@@ -160,31 +212,75 @@ var CommentForm = function (_React$Component2) {
 	}
 
 	_createClass(CommentForm, [{
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			this.user = firebase.auth().currentUser;
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			return React.createElement(
-				'form',
-				{ className: 'comment-form', onSubmit: this.handleSubmit },
-				React.createElement('input', {
-					type: 'text',
-					placeholder: 'Name',
-					value: this.state.author,
-					onChange: this.handleAuthorChange,
-					maxLength: '20',
-					className: 'name-input',
-					required: true
-				}),
-				React.createElement('input', {
-					type: 'text',
-					placeholder: 'Comment',
-					value: this.state.text,
-					onChange: this.handleTextChange
-				}),
-				React.createElement('input', {
-					type: 'submit',
-					value: 'Post',
-					disabled: !this.state.author.trim().length || !this.state.text.trim().length
-				})
+				'div',
+				null,
+				React.createElement(
+					'form',
+					{ className: 'comment-form', onSubmit: this.handleSubmit },
+					React.createElement(
+						'div',
+						{ className: 'social-login' },
+						React.createElement('input', {
+							type: 'text',
+							placeholder: 'Name',
+							value: firebase.auth().currentUser ? firebase.auth().currentUser.displayName : this.state.author,
+							onChange: this.handleAuthorChange,
+							maxLength: '20',
+							className: 'name-input',
+							required: true
+						}),
+						firebase.auth().currentUser ? React.createElement(
+							'div',
+							{ className: 'signout', onClick: this.socialSignOut },
+							'Sign out'
+						) : React.createElement(
+							'div',
+							null,
+							React.createElement(
+								'span',
+								null,
+								'Or Sign in With'
+							),
+							React.createElement(
+								'a',
+								{ onClick: this.socialSignIn('twitter'), className: 'icon-button twitter' },
+								React.createElement('i', { className: 'fa fa-twitter' }),
+								React.createElement('span', null)
+							),
+							React.createElement(
+								'a',
+								{ onClick: this.socialSignIn('facebook'), className: 'icon-button facebook' },
+								React.createElement('i', { className: 'fa fa-facebook' }),
+								React.createElement('span', null)
+							),
+							React.createElement(
+								'a',
+								{ onClick: this.socialSignIn('google'), className: 'icon-button google-plus' },
+								React.createElement('i', { className: 'fa fa-google' }),
+								React.createElement('span', null)
+							)
+						)
+					),
+					React.createElement('input', {
+						type: 'text',
+						placeholder: 'Comment',
+						value: this.state.text,
+						onChange: this.handleTextChange
+					}),
+					React.createElement('input', {
+						type: 'submit',
+						value: 'Post',
+						disabled: !this.state.author.trim().length || !this.state.text.trim().length
+					})
+				)
 			);
 		}
 	}]);
@@ -227,6 +323,10 @@ var CommentBox = function (_React$Component3) {
 			});
 		};
 
+		_this4.refreshData = function () {
+			_this4.setState(_this4.state);
+		};
+
 		_this4.state = { data: [] };
 		return _this4;
 	}
@@ -248,7 +348,7 @@ var CommentBox = function (_React$Component3) {
 					'Comments'
 				),
 				React.createElement(CommentList, { data: this.state.data, onCommentDelete: this.handleCommentDelete }),
-				React.createElement(CommentForm, { onCommentSubmit: this.handleCommentSubmit })
+				React.createElement(CommentForm, { onCommentSubmit: this.handleCommentSubmit, refreshData: this.refreshData })
 			);
 		}
 	}]);

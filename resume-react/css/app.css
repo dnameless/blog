@@ -27,6 +27,31 @@
   border-width: 3px;
 }
 
+.comment-node .photo {
+  height: 50px;
+  display: inline-block;
+  padding-right: 15px;
+}
+
+.comment-node .photo img{
+  height: 100%;
+  border-radius: 50%;
+}
+
+.comment-text .author {
+  top: 0.5em;
+  color: #abf;
+  font-size: 0.7em;
+}
+
+.comment-text {
+  vertical-align: top;
+  display: inline-block;
+  word-wrap: break-word;
+  width: 75%;
+  line-height: 1.5em;
+}
+
 .delete-comment {
   display: inline-block;
   position: absolute;
@@ -34,53 +59,156 @@
   opacity: 0.5;
   font-size: 10px;
   right: 21px;
-}
-
-.comment-node .print-author {
-  position: absolute;
-  top: 0.5em;
-  color: #abf;
-  font-size: 0.7em;
+  top: 35%;
 }
 
 .name-input {
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
+
 .name-input:not(:focus):valid {
   box-shadow: none;
   color: #abf;
   margin-bottom: -0.5em;
-  padding: 0;
   cursor: pointer;
+}
+
+.social-login div {
+  display: inline-block;
+  padding: 0.75em;
 }
 
 input {
   border: 0;
+  opacity: 0.5;
+}
+
+input:focus {
+  outline: 0;
+  opacity: 1;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
 
 input[type=text], input[type=password] {
-  display: block;
-  width: calc(100% - 1em);
+  display: inline-block;
+  width: calc(60% - 1em);
   padding: 0.5em;
   margin: 1em 0;
   font-size: 1em;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset, 0 1px 4px rgba(0, 0, 0, 0.3) inset;
 }
 
 input[type=submit] {
+  text-align: center;
+  margin: 1em;
+  opacity: 1;
   min-width: 5em;
-  padding: 0.5em;
+  padding: 1em 7em;
   font-size: 1em;
   color: #fff;
   background: #24b;
   border-radius: 2px;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2), 0 5px 7px rgba(0, 0, 0, 0.2);
 }
+
 input[type=submit]:hover {
   background: #35c;
 }
+
 input[type=submit][disabled] {
   background: #ddd;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.signout {
+  text-align: center;
+  cursor: pointer;
+  margin: 1em;
+  opacity: 1;
+  min-width: 5em;
+  padding: 1em 7em;
+  font-size: 1em;
+  color: #9f9f9f;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0), 0 5px 7px rgba(0, 0, 0, 0.05);
+}
+
+
+/* Wrapper */
+.icon-button {
+  background-color: white;
+  border-radius: 2.4rem;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.0rem;
+  height: 2.4rem;
+  line-height: 2.4rem;
+  margin: -0.5em 0.25em;
+  position: relative;
+  text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  width: 2.4rem;
+}
+
+/* Circle */
+.icon-button span {
+  border-radius: 0;
+  display: block;
+  height: 0;
+  left: 50%;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -webkit-transition: all 0.3s;
+     -moz-transition: all 0.3s;
+       -o-transition: all 0.3s;
+          transition: all 0.3s;
+  width: 0;
+}
+.icon-button:hover span {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 2.4rem;
+  margin: -1.2rem;
+}
+.twitter span {
+  background-color: #4099ff;
+}
+.facebook span {
+  background-color: #3B5998;
+}
+.google-plus span {
+  background-color: #db5a3c;
+}
+
+/* Icons */
+.icon-button i {
+  background: none;
+  height: 2.4rem;
+  left: 0;
+  line-height: 2.4rem;
+  position: absolute;
+  top: 0;
+  -webkit-transition: all 0.3s;
+     -moz-transition: all 0.3s;
+       -o-transition: all 0.3s;
+          transition: all 0.3s;
+  width: 2.4rem;
+  z-index: 10;
+}
+.icon-button .icon-twitter {
+  color: #4099ff;
+}
+.icon-button .icon-facebook {
+  color: #3B5998;
+}
+.icon-button .icon-google-plus {
+  color: #db5a3c;
+}
+.icon-button:hover {
+    color: white;
 }
