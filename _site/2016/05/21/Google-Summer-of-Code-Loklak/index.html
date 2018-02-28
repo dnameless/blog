@@ -1,0 +1,801 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="GSoC,Google Summer of Code,Loklak," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="Leon Mak" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="AbstractCurrently, Loklak.net has it’s own search and social wall capabilities. 
+&amp;lt;!-- ![alt text](https://loklaknet.files.wordpress.com/2015/08/screenshot-4.png &quot;linear layout&quot;) --&amp;gt;
+
+Loklak.org also h">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google Summer of Code: Loklak">
+<meta property="og:url" content="http://leonmak.me/2016/05/21/Google-Summer-of-Code-Loklak/index.html">
+<meta property="og:site_name" content="Leon Mak">
+<meta property="og:description" content="AbstractCurrently, Loklak.net has it’s own search and social wall capabilities. 
+&amp;lt;!-- ![alt text](https://loklaknet.files.wordpress.com/2015/08/screenshot-4.png &quot;linear layout&quot;) --&amp;gt;
+
+Loklak.org also h">
+<meta property="og:image" content="https://loklaknet.files.wordpress.com/2015/08/screenshot-7.png">
+<meta property="og:image" content="https://loklaknet.files.wordpress.com/2015/08/screenshot-8.png">
+<meta property="og:image" content="http://s32.postimg.org/b435dxmo5/Screenshot_2016_05_21_10_31_57.png">
+<meta property="og:image" content="https://www.herokucdn.com/deploy/button.svg">
+<meta property="og:image" content="https://cdn.scalingo.com/deploy/button.svg">
+<meta property="og:image" content="https://bluemix.net/deploy/button.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/leonmak/meteor-twitterwall/master/public/ss.gif">
+<meta property="og:image" content="http://s32.postimg.org/ckgtmc0sl/ss1.png">
+<meta property="og:image" content="http://s32.postimg.org/f1wpnyt51/ss2.png">
+<meta property="og:image" content="http://s32.postimg.org/fovmdhq11/ss3.png">
+<meta property="og:image" content="http://s32.postimg.org/4dsyp4j5x/ss4.png">
+<meta property="og:image" content="http://s32.postimg.org/60i6acv7p/ss5.png">
+<meta property="og:image" content="https://s32.postimg.org/lw2923pmt/ss01.png">
+<meta property="og:image" content="https://s32.postimg.org/bn9rwa1l1/ss02.png">
+<meta property="og:image" content="https://s32.postimg.org/j4izbhr45/ss03.png">
+<meta property="og:image" content="https://s32.postimg.org/p6v7fq4xx/ss04.png">
+<meta property="og:image" content="https://s32.postimg.org/8x51ctu9x/ss05.png">
+<meta property="og:image" content="https://s32.postimg.org/nudidu7id/ss06.png">
+<meta property="og:image" content="https://s32.postimg.org/4dssrbced/ss07.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Google Summer of Code: Loklak">
+<meta name="twitter:description" content="AbstractCurrently, Loklak.net has it’s own search and social wall capabilities. 
+&amp;lt;!-- ![alt text](https://loklaknet.files.wordpress.com/2015/08/screenshot-4.png &quot;linear layout&quot;) --&amp;gt;
+
+Loklak.org also h">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post',
+    motion: true
+  };
+</script>
+
+  <title> Google Summer of Code: Loklak | Leon Mak </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-87678896-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Leon Mak</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-projects">
+          <a href="/projects" rel="section">
+            
+              <i class="menu-item-icon fa fa-gift fa-fw"></i> <br />
+            
+            projects
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-design">
+          <a href="/design" rel="section">
+            
+              <i class="menu-item-icon fa fa-paint-brush fa-fw"></i> <br />
+            
+            design
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Google Summer of Code: Loklak
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            Posted on
+            <time itemprop="dateCreated" datetime="2016-05-21T08:49:17+08:00" content="2016-05-21">
+              2016-05-21
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/05/21/Google-Summer-of-Code-Loklak/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/21/Google-Summer-of-Code-Loklak/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>Currently, <a href="http://loklak.net" target="_blank" rel="external">Loklak.net</a> has it’s own search and social wall capabilities. </p>
+<!-- ![alt text](https://loklaknet.files.wordpress.com/2015/08/screenshot-4.png "linear layout") -->
+<p><img src="https://loklaknet.files.wordpress.com/2015/08/screenshot-7.png" alt="alt text" title="card layout"><br><img src="https://loklaknet.files.wordpress.com/2015/08/screenshot-8.png" alt="alt text" title="leaderboards"></p>
+<p><a href="http://loklak.org/apps/" target="_blank" rel="external">Loklak.org</a> also has a few front-end apps:<br><img src="http://s32.postimg.org/b435dxmo5/Screenshot_2016_05_21_10_31_57.png" alt="" title="loklak front-end apps"><br>However, they are currently not as feature filled as <a href="http://loklak.net" target="_blank" rel="external">Loklak.net</a>, so the project aims to add additional visualisations and display options, including a live-streaming tweet wall, and timeline for loklak.org</p>
+<h1 id="The-project"><a href="#The-project" class="headerlink" title="The project"></a>The project</h1><p>A front-end app that uses loklak.org for API calls to obtain tweets in json format. Users can deploy their own loklak server or locally or online (checkout the <a href="http://github.com/loklak/loklak_server" target="_blank" rel="external">loklak_server github repo</a> for one-click deploy buttons!)<br><a href="https://heroku.com/deploy" target="_blank" rel="external"><img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy"></a><br><a href="https://my.scalingo.com/deploy?source=https://github.com/loklak/loklak_server" target="_blank" rel="external"><img src="https://cdn.scalingo.com/deploy/button.svg" alt="Deploy on Scalingo"></a><br><a href="https://bluemix.net/deploy?repository=https://github.com/loklak/loklak_server" target="_blank" rel="external"><img src="https://bluemix.net/deploy/button.png" alt="Deploy to Bluemix"></a></p>
+<p>I have previously developed a prototype with meteor.js <a href="https://github.com/leonmak/meteor-twitterwall" target="_blank" rel="external">(github repo)</a> which you can deploy locally or online too!<br><img src="https://raw.githubusercontent.com/leonmak/meteor-twitterwall/master/public/ss.gif" alt=""></p>
+<p>But upon discussion with the loklak team we concluded it was hard to integrate with loklak.org like the current front-end apps, so I decided to make the front-end app with a front-end framework like Angular or React.</p>
+<a id="more"></a> 
+<p>This is a sample of part of the search.json API response and fields we could use for visualisations:<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  ... ,</span><br><span class="line">  "search_metadata": &#123;</span><br><span class="line">    "itemsPerPage": "100",</span><br><span class="line">    "count": "18",</span><br><span class="line">    "count_twitter_all": 0,</span><br><span class="line">    "count_twitter_new": 18,</span><br><span class="line">    "count_backend": 0,</span><br><span class="line">    "count_cache": 17,</span><br><span class="line">    "hits": 18,</span><br><span class="line">    "period": 54379295,</span><br><span class="line">    "query": "from:leonmakk",</span><br><span class="line">    "client": "118.201.140.222",</span><br><span class="line">    "time": 1728,</span><br><span class="line">    "servicereduction": "false",</span><br><span class="line">    "scraperInfo": "http://kaskelix.de:9000,local"</span><br><span class="line">  &#125;,</span><br><span class="line">  "statuses": [</span><br><span class="line">    &#123;</span><br><span class="line">      "timestamp": "2016-05-17T05:03:07.163Z",</span><br><span class="line">      "created_at": "2016-05-17T04:59:47.000Z",</span><br><span class="line">      "screen_name": "leonmakk",</span><br><span class="line">      "text": "http://en.wikipedia.org/wiki/PC_Tools_(Central_Point_Software)",</span><br><span class="line">      "link": "https://twitter.com/leonmakk/status/732435424145227776",</span><br><span class="line">      "id_str": "732435424145227776",</span><br><span class="line">      "source_type": "TWITTER",</span><br><span class="line">      "provider_type": "SCRAPED",</span><br><span class="line">      "retweet_count": 0,</span><br><span class="line">      "favourites_count": 0,</span><br><span class="line">      "images": [],</span><br><span class="line">      "images_count": 0,</span><br><span class="line">      "audio": [],</span><br><span class="line">      "audio_count": 0,</span><br><span class="line">      "videos": [],</span><br><span class="line">      "videos_count": 0,</span><br><span class="line">      "place_name": "Central Point",</span><br><span class="line">      "place_id": "",</span><br><span class="line">      "place_context": "FROM",</span><br><span class="line">      "place_country": "United States",</span><br><span class="line">      "place_country_code": "US",</span><br><span class="line">      "place_country_center": [</span><br><span class="line">        -83.27110293007973,</span><br><span class="line">        35.6452903550329</span><br><span class="line">      ],</span><br><span class="line">      "location_point": [</span><br><span class="line">        -122.91642774963586,</span><br><span class="line">        42.37596116139363</span><br><span class="line">      ],</span><br><span class="line">      "location_radius": 0,</span><br><span class="line">      "location_mark": [</span><br><span class="line">        -122.91596190504673,</span><br><span class="line">        42.37590151256903</span><br><span class="line">      ],</span><br><span class="line">      "location_source": "PLACE",</span><br><span class="line">      "hosts": ["en.wikipedia.org"],</span><br><span class="line">      "hosts_count": 1,</span><br><span class="line">      "links": ["http://en.wikipedia.org/wiki/PC_Tools_(Central_Point_Software)"],</span><br><span class="line">      "links_count": 1,</span><br><span class="line">      "mentions": [],</span><br><span class="line">      "mentions_count": 0,</span><br><span class="line">      "hashtags": [],</span><br><span class="line">      "hashtags_count": 0,</span><br><span class="line">      "without_l_len": 1,</span><br><span class="line">      "without_lu_len": 1,</span><br><span class="line">      "without_luh_len": 1,</span><br><span class="line">      "user": &#123;</span><br><span class="line">        "appearance_first": "2016-05-15T06:28:23.263Z",</span><br><span class="line">        "profile_image_url_https": "https://abs.twimg.com/sticky/default_profile_images/default_profile_3_bigger.png",</span><br><span class="line">        "screen_name": "leonmakk",</span><br><span class="line">        "user_id": "728557565676642306",</span><br><span class="line">        "name": "leon",</span><br><span class="line">        "appearance_latest": "2016-05-15T06:28:23.263Z"</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      "timestamp": "2016-05-15T06:28:23.263Z",</span><br><span class="line">    &#125;, </span><br><span class="line">    ...</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>The project aims to improve on the visualisations by using data from the search API.<br>Analysis of tweets will be done using javascript libraries like D3.js, to produce interactive visualisations. </p>
+<p>The “timestamp”, “retweet_count”, “hashtags” and “favourites_count” data fields will be used to update the app without needing to refresh the page by polling the loklak server and front-end updates in real time. For example we can show:<br>Top hashtag count &amp; users(by retweet/likes) for each day/ hour/ since the 1st day, using bubble charts:<br><img src="http://s32.postimg.org/ckgtmc0sl/ss1.png" alt=""><br><img src="http://s32.postimg.org/f1wpnyt51/ss2.png" alt=""></p>
+<p>stacked bar charts to show popularity of selected hashtags, divided into 2 groups for each day<br><img src="http://s32.postimg.org/fovmdhq11/ss3.png" alt=""></p>
+<p>radar charts for selected hashtag over time of day<br><img src="http://s32.postimg.org/4dsyp4j5x/ss4.png" alt=""></p>
+<p>The “mentions” data field will be used for a directed social graph:<br><img src="http://s32.postimg.org/60i6acv7p/ss5.png" alt=""></p>
+<h1 id="Benefits-for-loklak"><a href="#Benefits-for-loklak" class="headerlink" title="Benefits for loklak"></a>Benefits for loklak</h1><ul>
+<li>More compelling visualizations for loklak which let users make use of loklak_server for their events.</li>
+<li>An app base for loklak users to easily use data from loklak servers, giving users alternatives to loklak.net when loklak.org is not available, and the simple front end apps on loklak.org, which do not currently update in real time, like loklak.net. </li>
+<li>An app base in Javascript which encourage developers to contribute to loklak front ends, or modify it for their own needs</li>
+</ul>
+<h1 id="Project-Plan"><a href="#Project-Plan" class="headerlink" title="Project Plan"></a>Project Plan</h1><table>
+<thead>
+<tr>
+<th>Time</th>
+<th style="text-align:center">Task</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2 weeks</td>
+<td style="text-align:center">Develop the visualizations, using the existing data from loklak server, and libraries like Highcharts or D3 to display the data.</td>
+</tr>
+<tr>
+<td>1 week</td>
+<td style="text-align:center">Develop from ‘outside in’ :  Make the shell of the app, ie. the layout and structure</td>
+</tr>
+<tr>
+<td>1 week</td>
+<td style="text-align:center">Develop the home page &amp; server data processing to better diff the tweets and reduce the current memory load, which was a challenge for the prototype, and implement lazy loading when the tweets overflow.</td>
+</tr>
+<tr>
+<td>1 week</td>
+<td style="text-align:center">Develop the tweet grid wall</td>
+</tr>
+<tr>
+<td>1 week</td>
+<td style="text-align:center">Develop the data visualisation combi 1</td>
+</tr>
+<tr>
+<td>1 week</td>
+<td style="text-align:center">Develop the data visualisation combi 2</td>
+</tr>
+<tr>
+<td>1 week</td>
+<td style="text-align:center">Develop settings page and function for user to add settings</td>
+</tr>
+<tr>
+<td>1 week</td>
+<td style="text-align:center">Develop settings page to allow user to add panels</td>
+</tr>
+<tr>
+<td>2 weeks</td>
+<td style="text-align:center">Tie up loose ends and make screencasts and documentation</td>
+</tr>
+</tbody>
+</table>
+<h1 id="Mockups"><a href="#Mockups" class="headerlink" title="Mockups"></a>Mockups</h1><p><img src="https://s32.postimg.org/lw2923pmt/ss01.png" alt="" title="Home"></p>
+<p><img src="https://s32.postimg.org/bn9rwa1l1/ss02.png" alt="" title="Home with sidemenu activated"></p>
+<p><img src="https://s32.postimg.org/j4izbhr45/ss03.png" alt="" title="Wall with feature tweet"></p>
+<p><img src="https://s32.postimg.org/p6v7fq4xx/ss04.png" alt="" title="Wall without feature tweet"></p>
+<p><img src="https://s32.postimg.org/8x51ctu9x/ss05.png" alt="" title="Data visualisation Combination 1"></p>
+<p><img src="https://s32.postimg.org/nudidu7id/ss06.png" alt="" title="Data visualisation Combination 2"></p>
+<p><img src="https://s32.postimg.org/4dssrbced/ss07.png" alt="" title="Settings "></p>
+<p></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/GSoC/" rel="tag">#GSoC</a>
+          
+            <a href="/tags/Google-Summer-of-Code/" rel="tag">#Google Summer of Code</a>
+          
+            <a href="/tags/Loklak/" rel="tag">#Loklak</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/21/updates/" rel="next" title="updates">
+                <i class="fa fa-chevron-left"></i> updates
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/22/A-tweet-feed-for-loklak-org/" rel="prev" title="A tweet feed for loklak.org ">
+                A tweet feed for loklak.org  <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table Of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpeg" alt="Leon Mak" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Leon Mak</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">categories</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">33</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/leonmak" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-project"><span class="nav-number">2.</span> <span class="nav-text">The project</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Benefits-for-loklak"><span class="nav-number">3.</span> <span class="nav-text">Benefits for loklak</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Project-Plan"><span class="nav-number">4.</span> <span class="nav-text">Project Plan</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mockups"><span class="nav-number">5.</span> <span class="nav-text">Mockups</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leon Mak</span>
+</div>
+<!--
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+-->
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'leonmak-me';
+      var disqus_identifier = '2016/05/21/Google-Summer-of-Code-Loklak/';
+      var disqus_title = 'Google Summer of Code: Loklak';
+      var disqus_url = 'http://leonmak.me/2016/05/21/Google-Summer-of-Code-Loklak/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>
